@@ -1,0 +1,25 @@
+/*Program to print all prime numbers till 1000*/
+
+#include<stdio.h>
+#define N 1000
+
+int reverse_num(int n);
+
+int main()
+{
+    int i,j,num=2,flag;
+    for(i=2; i<=N; i++)
+    {
+        flag = 1;
+        for(j=2; j<=(i/2); j++)
+        {
+            if((i%j) == 0)
+            {
+                flag = 0;
+            }
+        }
+        if(flag == 1)
+        printf("%d ",i);
+    }
+    return 0;
+}

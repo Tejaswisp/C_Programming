@@ -1,0 +1,68 @@
+/*Implement quick sort algorithm to sort an array in increasing way*/
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 50
+
+void quick_sort_ascending(int *arr,int lb,int ub);
+int partition(int *arr,int lb,int ub);
+
+int main()
+{
+    int arr[SIZE];
+    int n,i;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d",&n);
+    printf("Enter array elements: ");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    quick_sort_ascending(arr,0,n-1);
+    printf("Array after sorting:\n");
+    for(i=0; i<n; i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    return 0;
+}
+
+int partition(int *arr,int lb,int ub)
+{
+    int start,end,pivot,temp;
+    start = lb;
+    end = ub;
+    pivot = arr[lb];
+    while(start < end)
+    {
+        while(arr[start] <= pivot)
+        {
+            start++;
+        }
+        while(arr[end] > pivot)
+        {
+            end--;
+        }
+        if(start < end)
+        {
+            temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+        }
+    }
+    temp = arr[end];
+    arr[end] = arr[lb];
+    arr[lb] = temp;
+    return end;
+}
+
+void quick_sort_ascending(int *arr,int lb,int ub)
+{
+    int loc;
+    if(lb < ub)
+    {
+        loc = partition(arr,lb,ub);
+        quick_sort_ascending(arr,lb,loc-1);
+        quick_sort_ascending(arr,loc+1,ub);
+    }
+}

@@ -1,0 +1,32 @@
+/*Program to find product of all numbers in an array of integers*/
+
+#include<stdio.h>
+#define SIZE 50
+
+int prod_of_arr(int *arr,int n);
+
+int main()
+{
+    int arr[SIZE];
+    int n,i,prod;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d",&n);
+    printf("Enter array elements: ");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    prod = prod_of_arr(arr,n);
+    printf("Product of all array elements : %d\n",prod);
+    return 0;
+}
+
+int prod_of_arr(int *arr,int n)
+{
+    int i,prod = 1;
+    for(i=0; i<n; i++)
+    {
+        prod *= *(arr+i);
+    }
+    return prod;
+}
