@@ -1,0 +1,58 @@
+/* Program to perform matrix addition */
+
+#include <stdio.h>
+#define R1 2 
+#define C1 3 
+#define R2 3 
+#define C2 4 
+
+void matrix_mul(int (*ptr1) [3],int (*ptr2) [4],int (*ptr3) [4]);
+
+int main()
+{
+    int arr1[R1][C1],arr2[R2][C2],arr3[R1][C2];
+    int i,j;
+    printf("Enter array1 elelments:\n");
+    for(i=0; i<R1; i++)
+    {
+        for(j=0; j<C1; j++)
+        {
+            scanf("%d",(*(arr1+i)+j));
+        }
+    }
+    printf("Enter array2 elelments:\n");
+    for(i=0; i<R2; i++)
+    {
+        for(j=0; j<C2; j++)
+        {
+            scanf("%d",(*(arr2+i)+j));
+        }
+    }
+    matrix_mul(arr1,arr2,arr3);
+    printf("Multiplication of two matrices:\n");
+    for(i=0; i<R1; i++)
+    {
+        for(j=0; j<C2; j++)
+        {
+            printf("%d  ",*(*(arr3+i)+j));
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+void matrix_mul(int (*ptr1) [3],int (*ptr2) [4],int (*ptr3) [4])
+{
+    int i,j,k;
+    for(i=0; i<R1; i++)
+    {
+        for(j=0; j<C2; j++)
+        {
+            ptr3[i][j] = 0;
+            for(k=0; k<C1; k++)
+            {
+                ptr3[i][j] = (ptr1[i][k] * ptr2[k][j]) + (ptr1[i][k] * ptr2[k][j]);
+            }
+        }
+    }
+}

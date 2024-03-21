@@ -1,0 +1,26 @@
+/* Program to allocate a single block of char using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+char* alloc_single_block_char(char **ptr);
+
+int main()
+{
+    char *ptr;
+    ptr = alloc_single_block_char(&ptr);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr));
+    return 0;
+}
+
+char* alloc_single_block_char(char **ptr)
+{
+    *ptr = (char *)malloc(sizeof(char));
+    return *ptr;
+}
+
+

@@ -1,0 +1,20 @@
+/* Program to find the square root of a number */
+
+#include <stdio.h>
+
+int find_square_root(int n);
+
+int main()
+{
+    int n,sq_num;
+    printf("Enter the number: ");
+    scanf("%d",&n);
+    sq_num = find_square_root(n);
+    printf("Square root of %d is : %d\n",n,sq_num);
+    return 0;
+}
+
+int find_square_root(int n)
+{
+    return n*n;
+}

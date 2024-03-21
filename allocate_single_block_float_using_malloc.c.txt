@@ -1,0 +1,26 @@
+/* Program to allocate a single block of float using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+float* alloc_single_block_float(float **ptr);
+
+int main()
+{
+    float *ptr;
+    ptr = alloc_single_block_float(&ptr);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr));
+    return 0;
+}
+
+float* alloc_single_block_float(float **ptr)
+{
+    *ptr = (float *)malloc(sizeof(float));
+    return *ptr;
+}
+
+
