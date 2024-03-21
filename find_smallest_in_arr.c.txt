@@ -1,0 +1,35 @@
+/*	Program to find the smallest element and it’s position in an array */
+
+#include <stdio.h>
+#define SIZE 50
+
+int find_smallest_ele(int *arr,int n);
+
+int main()
+{
+    int arr[SIZE];
+    int n,i,pos;
+    printf("Enter the number of elements in the array: ");
+    scanf("%d",&n);
+    printf("Enter array elements:\n");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",(arr+i));
+    }
+    pos = find_smallest_ele(arr,n);
+    printf("The smallest number in array is %d at position %d\n",arr[pos],pos);
+    return 0;
+}
+
+int find_smallest_ele(int *arr,int n)
+{
+    int i,smallest = 0;
+    for(i=1; i<n; i++)
+    {
+        if(arr[smallest] > arr[i])
+        {
+            smallest = i;
+        }
+    }
+    return smallest;
+}

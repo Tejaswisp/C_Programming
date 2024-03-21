@@ -1,0 +1,52 @@
+/* Program to perform matrix addition */
+
+#include <stdio.h>
+#define R 2 
+#define C 3 
+
+void matrix_addition(int (*ptr1) [3],int (*ptr2) [3],int (*ptr3) [3]);
+
+int main()
+{
+    int arr1[R][C],arr2[R][C],arr3[R][C];
+    int i,j;
+    printf("Enter array1 elelments:\n");
+    for(i=0; i<R; i++)
+    {
+        for(j=0; j<C; j++)
+        {
+            scanf("%d",(*(arr1+i)+j));
+        }
+    }
+    printf("Enter array2 elelments:\n");
+    for(i=0; i<R; i++)
+    {
+        for(j=0; j<C; j++)
+        {
+            scanf("%d",(*(arr2+i)+j));
+        }
+    }
+    matrix_addition(arr1,arr2,arr3);
+    printf("Addtion of two matrices:\n");
+    for(i=0; i<R; i++)
+    {
+        for(j=0; j<C; j++)
+        {
+            printf("%d  ",*(*(arr3+i)+j));
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+void matrix_addition(int (*ptr1) [3],int (*ptr2) [3],int (*ptr3) [3])
+{
+    int i,j,sum;
+    for(i=0; i<R; i++)
+    {
+        for(j=0; j<C; j++)
+        {
+            ptr3[i][j] = ptr1[i][j] + ptr2[i][j];
+        }
+    }
+}

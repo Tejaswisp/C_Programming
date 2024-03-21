@@ -1,0 +1,26 @@
+/* Program to find a if a number is odd or even using bitwise operators */
+
+#include <stdio.h>
+
+int even_or_odd(int num);
+
+int main()
+{
+    int num,res;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    res = even_or_odd(num);
+    if(res == 1)
+    printf("%d is an odd number\n",num);
+    else
+    printf("%d is an even number\n",num);
+    return 0;
+}
+
+int even_or_odd(int num)
+{
+    int temp;
+    temp = (1 & num);
+    return temp;
+}
+
