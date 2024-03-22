@@ -1,0 +1,28 @@
+/* Program to search letter ‘a’ and replace it with letter ‘k’ in a string */
+
+#include<stdio.h>
+#define SIZE 100 
+
+void search_and_replace(char *str,char ch);
+
+int main() 
+{
+    char str[SIZE],ch;
+    printf("Enter string: ");
+    fgets(str,SIZE,stdin);
+    ch = 'k';
+    search_and_replace(str,ch);
+    printf("After replacing 'a' with 'k',the string is : %s\n",str);
+    return 0;
+}
+
+void search_and_replace(char *str,char ch)
+{
+    int i;
+    for(i=0; (str[i] != '\0' && str[i] != '\n'); i++)
+    {
+        if(str[i] == 'a')
+        str[i] = ch;
+    }
+}
+

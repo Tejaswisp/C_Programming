@@ -1,0 +1,35 @@
+/* Program to remove all characters which are not alphabets in a string */
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 100 
+
+void remove_non_alphabets(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter the string: ");
+    fgets(str,SIZE,stdin);
+    remove_non_alphabets(str);
+    printf("String after removing on alphabetic characters : %s\n",str);
+    return 0;
+}
+
+void remove_non_alphabets(char *str)
+{
+    int i,j,len;
+    len = strlen(str)-1;
+    for(i=0; i<len; i++)
+    {
+        if(!((str[i]>=65 && str[i]<=90) | (str[i]>=90 && str[i]<=122)))
+        {
+            for(j=i; j<len; j++)
+            {
+                str[j] = str[j+1];
+            }
+            i--;
+            len--;
+        }
+    }
+}

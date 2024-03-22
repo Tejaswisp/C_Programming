@@ -1,0 +1,35 @@
+/* Program to check if a string is a palindrome */
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 100 
+
+int palindrome(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter the string: ");
+    fgets(str,SIZE,stdin);
+    int flag = palindrome(str);
+    if(flag == 1)
+    printf("String is palindrome\n");
+    else
+    printf("String is not plaindrome\n");
+    return 0;
+}
+
+int palindrome(char *str)
+{
+    int i,len,flag = 1;
+    len = strlen(str)-1;
+    for(i=0; i<(len/2); i++)
+    {
+        if(str[i] != str[len-1-i])
+        {
+            flag = 0;
+            break;
+        }
+    }
+    return flag;
+}

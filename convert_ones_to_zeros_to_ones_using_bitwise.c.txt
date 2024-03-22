@@ -1,0 +1,24 @@
+/*  Program to convert all 1s to 0s and all 0s to 1s in an integer */
+
+#include <stdio.h>
+
+void convert_ones_to_zeros(int num);
+
+int main()
+{
+    int num,count;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    convert_ones_to_zeros(num);
+    return 0;
+}
+
+void convert_ones_to_zeros(int num)
+{
+    int i,count=0;
+    num = ~(num);
+    for(int i=31; i>=0; i--)
+    {
+        printf("%d",((num>>i)&1));
+    }
+} 

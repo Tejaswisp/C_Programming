@@ -1,0 +1,29 @@
+/* Program to convert all charcaters to small letters in a string*/
+
+#include<stdio.h>
+#define SIZE 100 
+
+void convert_to_small(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter string: ");
+    fgets(str,SIZE,stdin);
+    convert_to_small(str);
+    printf("After converting all the characters to small,the string is : %s\n",str);
+    return 0;
+}
+
+void convert_to_small(char *str)
+{
+    int i;
+    for(i=0; (str[i] != '\0' && str[i] != '\n'); i++)
+    {
+        if(str[i] >= 65 && str[i] <= 90)
+        {
+            str[i] = str[i] + 32;
+        }
+    }
+}
+

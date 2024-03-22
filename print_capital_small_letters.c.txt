@@ -1,0 +1,28 @@
+/* Program to print A-Z and a-z */
+
+#include<stdio.h>
+#define SIZE 100 
+
+void print_A_to_Z_and_a_to_z(void);
+
+int main() 
+{
+    print_A_to_Z_and_a_to_z();
+    return 0;
+}
+
+void print_A_to_Z_and_a_to_z(void)
+{
+    int i;
+    printf("Capital letters:\n");
+    for(i=65; i<=90; i++)
+    {
+        printf("%c",i);
+    }
+    printf("\nSmall letters:\n");
+    for(i=97; i<=122; i++)
+    {
+        printf("%c",i);
+    }
+}
+

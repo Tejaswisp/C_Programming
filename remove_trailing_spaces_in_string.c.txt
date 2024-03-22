@@ -1,0 +1,32 @@
+/* Program to remove any trailing spaces in a string or array of strings */
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 100 
+
+void remove_trailing_spaces(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter the string:");
+    fgets(str,SIZE,stdin);
+    remove_trailing_spaces(str);
+    printf("After removing trailing spaces in a string:%s\n",str);
+    return 0;
+}
+
+void remove_trailing_spaces(char *str)
+{
+    int i,j,len;
+    char ch;
+    len = strlen(str)-1;
+    for(i=len-1; str[i] == ' '; i--)
+    {
+        if(str[i] == ' ')
+        {
+            str[i] = '\0';
+            len--;
+        }
+    }
+}

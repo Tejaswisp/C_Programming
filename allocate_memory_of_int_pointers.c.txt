@@ -1,0 +1,44 @@
+/*  Program to allocate memory to array of integer pointers, 
+    store and access data using indirection*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 50 
+
+void access_array_elements(int *arr,int **ptr,int n);
+
+int main() 
+{
+    int **ptr;
+    int arr[SIZE],n,i;
+    printf("Enter the value of n: ");
+    scanf("%d",&n);
+    printf("Enter array elements:\n");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",(arr+i));
+    }
+    ptr = (int **)malloc(sizeof(int *)*n);
+    if(ptr == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    printf("Memory allocation successful\n");
+    access_array_elements(arr,ptr,n);
+    return 0;
+}
+
+void access_array_elements(int *arr,int **ptr,int n)
+{
+    int i;
+    for(i=0; i<n; i++)
+    {
+        ptr[i] = (arr+i);
+    }
+    printf("Array contains:\n");
+    for(i=0; i<n; i++)
+    {
+        printf("%d ",**(ptr+i));
+    }
+}
+
+

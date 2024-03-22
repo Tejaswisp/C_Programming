@@ -1,0 +1,19 @@
+/* Program to learn use of string.h API,isalnum - test for an alphanumeric character */
+
+#include<stdio.h>
+#include<ctype.h>
+
+int main() 
+{
+    char ch;
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    int res = isalnum(ch);
+    if(res)
+    printf("%c is alphanumeric\n",ch);
+    else
+    printf("%c is not alphanumeric\n",ch);
+    return 0;
+}
+
+

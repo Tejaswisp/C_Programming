@@ -1,0 +1,31 @@
+/* Program to reverse a string using for or while loop */
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 100 
+
+void reverse_string(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter string: ");
+    fgets(str,SIZE,stdin);
+    reverse_string(str);
+    printf("After reversing,the string is : %s\n",str);
+    return 0;
+}
+
+void reverse_string(char *str)
+{
+    int len,i;
+    char ch;
+    len = strlen(str)-1;
+    for(i=0; i<(len/2); i++)
+    {
+        ch = str[i];
+        str[i] = str[len-i-1];
+        str[len-i-1] = ch;
+    }
+}
+

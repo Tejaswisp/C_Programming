@@ -1,0 +1,36 @@
+/* 31.	Program to remove leading spaces, trailing spaces and white spaces in a string or array of strings */
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 100 
+
+void remove_spaces(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter the string:");
+    fgets(str,SIZE,stdin);
+    remove_spaces(str);
+    printf("After removing spaces in a string:%s\n",str);
+    return 0;
+}
+
+void remove_spaces(char *str)
+{
+    int i,j,len;
+    char ch;
+    len = strlen(str)-1;
+    for(i=0; i<len; i++)
+    {
+        if(str[i] == ' ')
+        {
+            for(j=i; j<len; j++)
+            {
+                str[j] = str[j+1];
+            }
+            i--;
+            len--;
+        }
+    }
+}

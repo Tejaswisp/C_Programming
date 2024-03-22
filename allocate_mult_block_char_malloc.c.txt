@@ -1,0 +1,30 @@
+/* Program to allocate a multiple blocks of char using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+char* alloc_mult_block_char(char **ptr,int n);
+
+int main()
+{
+    char *ptr;
+    int n;
+    printf("Enter the number of blocks to be allocated: ");
+    scanf("%d",&n);
+    ptr = alloc_mult_block_char(&ptr,n);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr)*n);
+    free(ptr);
+    return 0;
+}
+
+char* alloc_mult_block_char(char **ptr,int n)
+{
+    *ptr = (char *)malloc(sizeof(char) * n);
+    return *ptr;
+}
+
+

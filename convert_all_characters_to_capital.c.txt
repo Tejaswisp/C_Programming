@@ -1,0 +1,29 @@
+/* Program to convert all characters to capital letters in a string */
+
+#include<stdio.h>
+#define SIZE 100 
+
+void convert_to_capital(char *str);
+
+int main() 
+{
+    char str[SIZE];
+    printf("Enter string: ");
+    fgets(str,SIZE,stdin);
+    convert_to_capital(str);
+    printf("After converting all the characters to capital,the string is : %s\n",str);
+    return 0;
+}
+
+void convert_to_capital(char *str)
+{
+    int i;
+    for(i=0; (str[i] != '\0' && str[i] != '\n'); i++)
+    {
+        if(str[i] >= 97 && str[i] <= 122)
+        {
+            str[i] = str[i] - 32;
+        }
+    }
+}
+
