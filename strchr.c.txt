@@ -1,0 +1,17 @@
+/* strchr - string scanning operation*/
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+int main()
+{
+    char str[N],ch,*ptr;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter the character: ");
+    scanf("%c",&ch);
+    ptr = strchr(str,ch);
+    printf("%s\n",ptr);
+    return 0;
+}

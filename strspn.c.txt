@@ -1,0 +1,19 @@
+/* Program to learn use of string.h APIs, strndup */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char str1[N],str2[N];
+    int len;
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    printf("Enter string2: ");
+    fgets(str2,N,stdin);
+    len = strspn(str1,str2);
+    printf("Matching length = %d\n",len);
+    return 0;   
+}
+

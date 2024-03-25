@@ -1,0 +1,29 @@
+/* Program to swap bits from M,N with P,Q in an integer */
+
+#include<stdio.h>
+
+int swap_bits(int num,int pos1,int pos2);
+
+int main()
+{
+   int num,pos1,pos2,res;
+   printf("Enter data: ");
+   scanf("%d",&num);
+   printf("Enter pos1 and pos2: ");
+   scanf("%d%d",&pos1,&pos2);
+   res = swap_bits(num,pos1,pos2);
+   printf("After swapping : %d\n",res);
+   return 0;   
+}
+
+int swap_bits(int num,int pos1,int pos2)
+{
+    int bit1,bit2,mask1,mask2,res;
+    bit1 = (num >> pos1) & 1;
+    bit2 = (num >> pos2) & 1;
+    mask1 = (bit1 ^ bit2);
+    mask2 = (mask1 << pos1) | (mask2 << pos2);
+    res = (num ^ mask2);
+    return res;
+}
+

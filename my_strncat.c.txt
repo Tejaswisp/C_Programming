@@ -1,0 +1,33 @@
+/* Implement, strncat - concatenate two strings */
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+void strncat_func(char *str1,char *str2,int n);
+
+int main()
+{
+    char str1[N],str2[N];
+    int n;
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    printf("Enter string2: ");
+    fgets(str2,N,stdin);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    strncat_func(str1,str2,n);
+    printf("%s\n",str1);
+    return 0;   
+}
+
+void strncat_func(char *str1,char *str2,int n)
+{
+    int len,i;
+    len = strlen(str1)-1;
+    for(i=0; i<n; i++)
+    {
+        str1[len+i] = str2[i];
+    }
+}
+

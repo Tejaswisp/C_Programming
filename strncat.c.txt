@@ -1,0 +1,22 @@
+/* Program to learn use of string.h APIs, strncat */
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+int main()
+{
+    char src[N],des[N];
+    int n;
+    printf("Enter source string: ");
+    scanf("%s",src);
+    printf("Enter destination string: ");
+    scanf("%s",des);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    strncat(des,src,n);
+    printf("After concatenating : %s\n",des);
+    return 0;
+}
+
+

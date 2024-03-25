@@ -1,0 +1,21 @@
+/* 1.	Program to learn use of string.h APIs, strtok */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char str[N];
+    const char delim[2] = "-";
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    char *ptr = strtok(str,delim);
+    while(ptr != NULL)
+    {
+        printf("%s ",ptr);
+        ptr = strtok(NULL,"-");
+    }
+   return 0;   
+}
+

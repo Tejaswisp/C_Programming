@@ -1,0 +1,37 @@
+/* Implement,strchr - string scanning operation */
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+char *strchr_func(char *str,char ch);
+
+int main()
+{
+    char str[N],ch,*ptr;
+    int n;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    ptr = strchr_func(str,ch);
+    if(ptr == NULL)
+    printf("No first occurance of string found\n");
+    else
+    printf("%s\n",ptr);
+    return 0;   
+}
+
+char *strchr_func(char *str,char ch)
+{
+    int i;
+    for(i=0; str[i]!='\0'; i++)
+    {
+        if(str[i] == ch)
+        {
+            return &str[i];
+        }
+    }
+    return NULL;
+}
+

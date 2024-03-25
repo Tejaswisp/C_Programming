@@ -1,0 +1,22 @@
+/* 1.	Program to learn use of string.h APIs, strstr */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char src[N],search[N];
+    char *ptr;
+    printf("Enter source string: ");
+    fgets(src,N,stdin);
+    printf("Enter substring: ");
+    fgets(search,N,stdin);
+    ptr = strstr(src,search);
+    if(ptr == NULL)
+    printf("Sub string is not present\n");
+    else
+    printf("The sub string is:%s\n",ptr);
+   return 0;   
+}
+

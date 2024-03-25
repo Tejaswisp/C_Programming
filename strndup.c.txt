@@ -1,0 +1,20 @@
+/* Program to learn use of string.h APIs, strndup */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char str[N];
+    char *ptr;
+    int n;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    ptr = strndup(str,n);
+    printf("%s\n",ptr);
+   return 0;   
+}
+

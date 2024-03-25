@@ -1,0 +1,105 @@
+/* Program to implement stack using Single linked lists  */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct stack 
+{
+    int data;
+    struct stack *next;
+};
+
+void push(struct stack **top,int data);
+void print(struct stack **top);
+void pop(struct stack **top);
+void top_element(struct stack **top);
+
+int main()
+{
+    struct stack *top = NULL;
+    int choice,data;
+    while(1)
+    {
+        printf("Enter choice:\n");
+        printf("1.push\n2.pop\n3.top\n4.print\n5.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf("Enter data: ");
+            scanf("%d",&data);
+            push(&top,data);
+            break;
+            case 2: pop(&top);
+            break;
+            case 3: top_element(&top);
+            break;
+            case 4: print(&top);
+            break;
+            case 5: exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+void push(struct stack **top,int data)
+{
+    struct stack *newnode;
+    newnode = (struct stack *)malloc(sizeof(struct stack));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    {
+        newnode->data = data;
+        newnode->next = NULL;
+        if(*top == NULL)
+        {
+            *top = newnode;
+        }
+        else
+        {
+            newnode->next = *top;
+            *top = newnode;
+        }
+    }
+}
+
+void print(struct stack **top)
+{
+    struct stack *temp = *top;
+    if(*top == NULL)
+    printf("Stack is empty\n");
+    else
+    {
+        printf("Stack contains\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+void pop(struct stack **top)
+{
+    struct stack *temp;
+    if(*top == NULL)
+    printf("Stack is empty\n");
+    else 
+    {
+        temp = *top;
+        *top = (*top)->next;
+        free(temp);
+    }
+}
+
+void top_element(struct stack **top)
+{
+    if(*top == NULL)
+    printf("stack is empty\n");
+    else
+    {
+        printf("Top element in the stack is : %d\n",(*top)->data);
+    }
+}

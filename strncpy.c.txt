@@ -1,4 +1,4 @@
-/* 1.	Program to learn use of string.h APIs, strcpy */
+/* 1.	Program to learn use of string.h APIs, strncpy */
 
 #include<stdio.h>
 #include<string.h> 
@@ -7,9 +7,12 @@
 int main()
 {
     char src[N],des[N];
+    int n;
     printf("Enter source string: ");
     fgets(src,N,stdin);
-    strcpy(des,src);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    strncpy(des,src,n);
     printf("String after copying : %s\n",des);
    return 0;   
 }
