@@ -1,0 +1,46 @@
+/* Program to search letter ‘a’ and delete it in an array of strings */
+
+#include<stdio.h>
+#include<string.h>
+
+void search_and_delete(char (*ptr) [10],int n);
+
+int main()
+{
+    char str[2][10];
+    int i;
+    printf("Enter strings : ");
+    for(i=0; i<2; i++)
+    {
+        scanf("%s",str[i]);
+    }
+    
+    search_and_delete(str,2);
+    printf("Strings after deleting character 'a':\n");
+    for(i=0; i<2; i++)
+    {
+        printf("%s\n",str[i]);
+    }
+    return 0;
+}
+
+void search_and_delete(char (*ptr) [10],int n)
+{
+    int i,j,k,len;
+    for(i=0; i<n; i++)
+    {
+        len = strlen(ptr[i]);
+        
+        for(j=0; j<len; j++)
+        {
+            if(ptr[i][j] == 'a')
+            {
+                for(k=j; k<len; k++)
+                {
+                    ptr[i][k] = ptr[i][k+1];
+                }
+                --len;
+            }
+        }
+    }
+}

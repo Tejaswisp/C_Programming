@@ -1,0 +1,89 @@
+/* Program to create an union of two integer arrays */
+
+#include<stdio.h>
+#define N 50 
+
+int copy_arr(int *arr1,int *arr2,int n1,int n2);
+int remove_dup(int *arr1,int n);
+void sort_arr(int *arr1,int n);
+
+int main()
+{
+    int arr1[N],arr2[N],uarr[N];
+    int n1,n2,i;
+    printf("Enter arr1 size: ");
+    scanf("%d",&n1);
+    printf("Enter arr1 elemnts: ");
+    for(i=0; i<n1; i++)
+    {
+        scanf("%d",(arr1+i));
+    }
+    printf("Enter arr2 size: ");
+    scanf("%d",&n2);
+    printf("Enter arr2 elemnts: ");
+    for(i=0; i<n2; i++)
+    {
+        scanf("%d",(arr2+i));
+    }
+    n1 = copy_arr(arr1,arr2,n1,n2);
+    n1 = remove_dup(arr1,n1);
+    sort_arr(arr1,n1);
+    printf("union of two arrays:\n");
+    for(i=0; i<n1; i++)
+    {
+        printf("%d ",*(arr1+i));
+    }
+
+    return 0;
+}
+
+int copy_arr(int *arr1,int *arr2,int n1,int n2)
+{
+    int i;
+    for(i=0; i<n2; i++)
+    {
+        arr1[n1+i] = arr2[i];
+    }
+    n1 = n1 + n2;
+    return n1;
+}
+
+int remove_dup(int *arr1,int n)
+{
+    int i,j,k;
+    for(i=0; i<n; i++)
+    {
+        for(j=i+1; j<n; j++)
+        {
+            if(arr1[i] == arr1[j])
+            {
+                for(k=j; k<n; k++)
+                {
+                    arr1[k] = arr1[k+1];
+                }
+                n--;
+            }
+        }
+    }
+    return n;
+}
+
+void sort_arr(int *arr1,int n)
+{
+    int i,j,flag=0,temp;
+    for(i=0; i<n-1; i++)
+    {
+        for(j=0; j<n-1; j++)
+        {
+            if(arr1[j] > arr1[j+1])
+            {
+                temp = arr1[j];
+                arr1[j] = arr1[j+1];
+                arr1[j+1] = temp;
+                flag = 1;
+            }
+        }
+        if(flag == 0)
+        break;
+    }
+}

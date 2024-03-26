@@ -1,0 +1,22 @@
+/* Program to print A-Z or a-z using recursion */
+
+#include<stdio.h>
+
+void print_a_To_z(int n);
+
+int main()
+{
+    int n = 97;
+    print_a_To_z(n);
+    return 0;
+}
+
+void print_a_To_z(int n)
+{
+    if(n < 123)
+    {
+        printf("%c ",n);
+        print_a_To_z(++n);
+    }
+    
+}

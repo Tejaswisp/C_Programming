@@ -1,0 +1,29 @@
+/* Program to find the power of a number; Input : Base, power Output : (Base)^Power */
+
+#include<stdio.h>
+
+int find_power_of_num(int base,int power);
+
+int main()
+{
+    int base,power,res;
+    printf("Enter base: ");
+    scanf("%d",&base);
+    printf("Enter power: ");
+    scanf("%d",&power);
+    res = find_power_of_num(base,power);
+    printf("%d power %d is : %d\n",base,power,res);
+    return 0;
+}
+
+int find_power_of_num(int base,int power)
+{
+    int res = 1;
+    while(power > 0)
+    {
+        res = res * base;
+        power--;
+    }
+    return res;
+}
+

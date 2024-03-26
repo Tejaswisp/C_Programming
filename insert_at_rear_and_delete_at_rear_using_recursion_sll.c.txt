@@ -1,0 +1,108 @@
+/* Program to implement insert_at_rear and delete_at_rear using recursion in single linked lists */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *next;
+};
+
+void insert_at_rear(struct node **head,int i,int n);
+void print(struct node **head);
+void delete_at_rear(struct node **head,int n);
+
+int main()
+{
+    int data,insert_n,delete_n;
+    struct node *head = NULL;
+    printf("Enter no.of nodes for insert : ");
+    scanf("%d",&insert_n);
+    insert_at_rear(&head,0,insert_n);
+    print(&head);
+    printf("\nEnter no.of nodes for delete : ");
+    scanf("%d",&delete_n);
+    delete_at_rear(&head,delete_n);
+    print(&head);
+    return 0;
+}
+
+void insert_at_rear(struct node **head,int i,int n)
+{
+    if(i < n)
+    {
+        int data;
+        struct node *newnode,*temp;
+        newnode = (struct node *)malloc(sizeof(struct node));
+        if(newnode == NULL)
+        printf("Unable to allocate memory\n");
+        else
+        {
+            printf("Enter data: ");
+            scanf("%d",&data);
+            newnode->data = data;
+            newnode->next = NULL;
+            if(*head == NULL)
+            {
+                *head = newnode;
+            }
+            else
+            {
+                temp = *head;
+                while(temp->next != NULL)
+                {
+                    temp = temp->next;
+                }
+                temp->next = newnode;
+            }
+        }
+        i++;
+        insert_at_rear(head,i,n);
+    }
+    else
+    return;
+}
+
+void print(struct node **head)
+{
+    if(*head == NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        struct node *temp = *head;
+        printf("List contains:\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+    }
+}
+
+void delete_at_rear(struct node **head,int n)
+{
+    if(n > 0)
+    {
+        struct node *temp,*prev;
+        if(*head == NULL)
+        printf("List is empty\n");
+        else
+        {
+           temp = *head;  
+           while(temp->next != NULL)
+           {
+               prev = temp;
+               temp = temp->next;
+           }
+           prev->next = NULL;
+           free(temp);
+        }
+        n--;
+        delete_at_rear(head,n);
+    }
+    else
+    return;
+}

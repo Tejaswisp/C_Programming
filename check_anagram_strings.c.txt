@@ -1,0 +1,49 @@
+/*	Program to check if two strings are anagram of each other */
+
+#include<stdio.h>
+#define N 50 
+
+void find_frequency(char *str,int *arr);
+int find_anagram(int *arr1,int *arr2);
+
+int main()
+{
+    char str1[N],str2[N];
+    int freq_arr1[26] = {0};
+    int freq_arr2[26] = {0};
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    printf("Enter string2: ");
+    fgets(str2,N,stdin);
+    find_frequency(str1,freq_arr1);
+    find_frequency(str2,freq_arr2);
+    int res = find_anagram(freq_arr1,freq_arr2);
+    if(res)
+    printf("Two strings are anagram of each other\n");
+    else
+    printf("Two strings are not anagram of each other\n");
+    return 0;
+}
+
+void find_frequency(char *str,int *arr)
+{
+    int i;
+    for(i=0; str[i] != '\0'; i++)
+    {
+        arr[str[i]-97] += 1;
+    }
+}
+
+int find_anagram(int *arr1,int *arr2)
+{
+    int i,flag=1;
+    for(i=0; i<26; i++)
+    {
+        if(arr1[i] != arr2[i])
+        {
+            flag = 0;
+            break;
+        }
+    }
+    return flag;
+}

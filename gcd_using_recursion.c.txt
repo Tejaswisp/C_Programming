@@ -1,0 +1,23 @@
+/* Program to find GCD of two numbers using recursion */
+
+#include<stdio.h>
+
+int hcf(int x,int y);
+
+int main()
+{
+    int x,y;
+    printf("Enter two numbers: ");
+    scanf("%d%d",&x,&y);
+    int temp = hcf(x,y);
+    printf("%d",temp);
+    return 0;
+}
+
+int hcf(int x,int y)
+{
+    if(y != 0)
+    return hcf(y,x%y);
+    else
+    return x;
+}
