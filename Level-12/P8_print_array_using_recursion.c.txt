@@ -1,0 +1,33 @@
+/* Program to print the contens of an integer array using recursion */
+
+#include<stdio.h>
+#define N 50 
+
+void print_array(int *arr,int start,int n);
+
+int main()
+{
+    int arr[N],n,i;
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    printf("Enter array elements: ");
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",(arr+i));
+    }
+    printf("Array contains:\n");
+    print_array(arr,0,n-1);
+    return 0;
+}
+
+void print_array(int *arr,int start,int n)
+{
+    if(start <= n)
+    {
+        printf("%d ",arr[start]);
+        start++;
+        print_array(arr,start,n);
+    }
+}
+
+

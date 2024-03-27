@@ -1,0 +1,25 @@
+/* strcpy - copy a string and return a pointer to the end of the result, using recursion */
+
+#include<stdio.h>
+#include<string.h>
+#define N 10 
+
+void strcpy_func(char *des,char *src,int i);
+
+int main()
+{
+    char src[N],des[N];
+    printf("Enter src string: ");
+    fgets(src,N,stdin);
+    strcpy_func(des,src,0);
+    printf("destination string : %s\n",des);
+    return 0;
+}
+
+void strcpy_func(char *des,char *src,int i)
+{
+    if(src[i] == '\0')
+    return;
+    des[i] = src[i];
+    strcpy_func(des,src,++i);
+}
