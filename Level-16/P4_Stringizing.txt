@@ -1,0 +1,13 @@
+/* Stringizing */
+
+#include<stdio.h>
+#define msg(m) #m
+#define msg1(n) #n 
+
+int main()
+{
+    printf(msg(C Programming));
+    printf("\n");
+    printf(msg1(Data structures));
+    return 0;
+}
