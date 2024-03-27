@@ -1,0 +1,22 @@
+/* Program to convert to “centimetres” to “inches” */
+
+#include <stdio.h>
+
+double centimetres_to_inches(int centim);
+
+int main()
+{
+    int centim;
+    printf("Enter centimetre: ");
+    scanf("%d",&centim);
+    double inch = centimetres_to_inches(centim);
+    printf("%d cm = %lf inches\n",centim,inch);
+    return 0;
+}
+
+double centimetres_to_inches(int centim)
+{
+    double res;
+    res = centim * 0.3937;
+    return res;
+}

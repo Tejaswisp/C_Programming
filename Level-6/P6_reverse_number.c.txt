@@ -1,0 +1,27 @@
+/*Program to reverse an integer. Input : 12345, Output : 54321*/
+
+#include<stdio.h>
+
+int reverse_num(int n);
+
+int main()
+{
+    int n;
+    printf("Enter the number: ");
+    scanf("%d",&n);
+    int reverse_number = reverse_num(n);
+    printf("Reversed number is: %d\n",reverse_number);
+    return 0;
+}
+
+int reverse_num(int n)
+{
+    int reverse_num = 0, rem;
+    while(n > 0)
+    {
+        rem = n % 10;
+        reverse_num = (reverse_num  * 10) + rem;
+        n = n / 10;
+    }
+    return reverse_num;
+}

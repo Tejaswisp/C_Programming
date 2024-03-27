@@ -1,0 +1,28 @@
+/*Progam to find if a number is prime or not*/
+
+#include<stdio.h>
+
+int prime_or_not(int num);
+
+int main()
+{
+    int num,res;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    (prime_or_not(num))?printf("%d is a prime number\n",num):printf("%d is not a prime number\n",num);
+    return 0;
+}
+
+int prime_or_not(int num)
+{
+    int i,flag=1;
+    for(i=2; i<=(num/2); i++)
+    {
+        if((num%i) == 0)
+        {
+            flag = 0;
+            break;
+        }
+    }
+    return flag;
+}

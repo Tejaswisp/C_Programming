@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+long hcf_func(long, long);
+
+int main() 
+{
+  long x, y, hcf, lcm;
+  printf("Enter two numbers: \n");
+  scanf("%ld%ld", &x, &y);
+  hcf = hcf_func(x, y);
+  lcm = (x*y)/hcf;
+
+  printf("HCF %ld\n",hcf);
+  printf("LCM = %ld\n",lcm);
+
+  return 0;
+}
+
+long hcf_func(long x, long y) 
+{
+  if (x == 0) 
+  {
+    return y;
+  }
+
+  while (y != 0) 
+  {
+    if (x > y)
+      x = x - y;
+    else
+      y = y - x;
+  }
+
+  return x;
+}

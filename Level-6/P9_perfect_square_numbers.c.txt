@@ -1,0 +1,17 @@
+/*Program to print all perfect square numbers till 1000. 1, 4, 9, 16, 25 etc.,*/
+
+#include<stdio.h>
+#define N 1000
+
+
+int main()
+{
+    int i,square_num;
+    printf("The perfect square numbers are:\n");
+    for(i=1; i<=N; i++)
+    {
+        square_num = i * i;
+        printf("%d ",square_num);
+    }
+    return 0;
+}

@@ -1,0 +1,27 @@
+/* Program to add all digits in a given integer */
+
+#include <stdio.h>
+
+int add_digits_of_num(int num);
+
+int main()
+{
+    int num,res;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    res = add_digits_of_num(num);
+    printf("Sum of all digits in a number : %d\n",res);
+    return 0;
+}
+
+int add_digits_of_num(int num)
+{
+    int sum = 0;
+    while(num > 0)
+    {
+        sum = sum + (num % 10);
+        num = num / 10;
+    }
+    return sum;
+}
+

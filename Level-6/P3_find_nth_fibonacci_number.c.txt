@@ -1,0 +1,41 @@
+/*Program to find the Nth fibonacci number*/
+
+#include<stdio.h>
+
+int find_nth_fibonacci_number(int n);
+
+int main()
+{
+    int n;
+    printf("Enter the number: ");
+    scanf("%d",&n);
+    int fib_num = find_nth_fibonacci_number(n);
+    printf("%d ",fib_num);
+    return 0;
+}
+
+int find_nth_fibonacci_number(int n)
+{
+    int i,n1,n2,n3;
+    n1 = 0;
+    n2 = 1;
+    if(n == 0)
+    {
+        return n1;
+    }
+    else if(n==1)
+    {
+        return n2;
+    }
+    else
+    {
+        for(i=2; i<=n; i++)
+        {
+            n3 = n1 + n2;
+            n1 = n2;
+            n2 = n3;
+            if(n == i)
+            return n3;
+        }
+    }
+}
