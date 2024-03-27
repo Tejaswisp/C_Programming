@@ -1,0 +1,42 @@
+/* Program to reverse all strings in an array of strings */
+
+#include<stdio.h>
+#include<string.h>
+
+void reverse_all_strings(char (*ptr) [10],int n);
+
+int main()
+{
+    char str[2][10];
+    int i;
+    printf("Enter strings : ");
+    for(i=0; i<2; i++)
+    {
+        scanf("%s",str[i]);
+    }
+    
+    reverse_all_strings(str,2);
+    printf("Strings after reversing:\n");
+    for(i=0; i<2; i++)
+    {
+        printf("%s\n",str[i]);
+    }
+    return 0;
+}
+
+void reverse_all_strings(char (*ptr) [10],int n)
+{
+    int i,j,len;
+    char ch;
+    for(i=0; i<n; i++)
+    {
+        len = strlen(ptr[i]);
+        
+        for(j=0; j<(len/2); j++)
+        {
+            ch = ptr[i][j];
+            ptr[i][j] = ptr[i][len-1-j];
+            ptr[i][len-1-j] = ch;
+        }
+    }
+}

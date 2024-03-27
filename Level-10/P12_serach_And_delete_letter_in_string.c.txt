@@ -1,0 +1,35 @@
+/* Program to search letter ‘a’ and delete it in a string */
+
+#include<stdio.h>
+#include<string.h>
+#define SIZE 100 
+
+void search_and_delete(char *str,char ch);
+
+int main() 
+{
+    char str[SIZE],ch;
+    printf("Enter string: ");
+    fgets(str,SIZE,stdin);
+    ch = 'a';
+    search_and_delete(str,ch);
+    printf("After deleting 'a' in string : %s\n",str);
+    return 0;
+}
+
+void search_and_delete(char *str,char ch)
+{
+    int i,j,len;
+    len = strlen(str)-1;
+    for(i=0; i<len; i++)
+    {
+        if(str[i] == 'a')
+        {
+            for(j=i; j<len; j++)
+            str[j] = str[j+1];
+            len--;
+            i--;
+        }
+    }
+}
+
