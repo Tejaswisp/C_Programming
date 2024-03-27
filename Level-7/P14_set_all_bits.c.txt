@@ -1,0 +1,25 @@
+/* Program to set all bits between positions M and N */
+
+#include <stdio.h>
+
+int set_all_bits(int n,int p1,int p2);
+
+int main()
+{
+    int n,p1,p2,i;
+    printf("Enter number: ");
+    scanf("%d",&n);
+    printf("Enter positions: ");
+    scanf("%d%d",&p1,&p2);
+    int res = set_all_bits(n,p1,p2);
+    printf("%d\n",res);
+    return 0;
+}
+
+int set_all_bits(int n,int p1,int p2)
+{
+    int mask;
+    mask = (((1 << (p1-1)) - 1) ^ ((1 << p2)-1));
+    n = n | mask;
+    return n;
+}

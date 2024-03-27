@@ -1,0 +1,23 @@
+/* Program to divide a number by 2 using bitwise operator */
+
+#include <stdio.h>
+
+int div_by_two(int n);
+
+int main()
+{
+    int n,res;
+    printf("Enter number: ");
+    scanf("%d",&n);
+    res = div_by_two(n);
+    printf("%d devide by 2 is : %d\n",n,res);
+    return 0;
+}
+
+int div_by_two(int n)
+{
+    n = n >> 1;
+    return n;
+}
+
+

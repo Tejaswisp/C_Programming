@@ -1,0 +1,24 @@
+/* Program to clear a bit at a particular position in an integer */
+
+#include <stdio.h>
+
+int clear_bit(int num,int k);
+
+int main()
+{
+    int num,k,res;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    printf("Enter the position: ");
+    scanf("%d",&k);
+    res = clear_bit(num,k);
+    printf("After clearing the bit : %d\n",res);
+    return 0;
+}
+
+int clear_bit(int num,int k)
+{
+    num = (num & (~(1 << k)));
+    return num;
+}
+

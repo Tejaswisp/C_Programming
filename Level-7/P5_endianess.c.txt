@@ -1,0 +1,15 @@
+/* Program to check if a system is little endian or big endian */
+
+#include <stdio.h>
+
+int main() 
+{
+    int num = 1;
+    char *check = (char *)&num;
+    if(*check)
+    printf("Little endian system");
+    else
+    printf("Big endian system\n");
+    return 0;
+}
+
