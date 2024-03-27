@@ -1,0 +1,99 @@
+/* Program to reverse a single linked list using iteration */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *next;
+};
+
+void print(struct node **head);
+void insert_at_first(struct node **head,int data);
+void reverse_list(struct node **head);
+
+int main()
+{
+    struct node *head = NULL;
+    int choice,data,pos;
+    while(1)
+    {
+        printf("Enter choice:\n");
+        printf("1.insert_at_first\n2.reverse_list\n3.print\n4.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf("Enter data: ");
+            scanf("%d",&data);
+            insert_at_first(&head,data);
+            break;
+            case 2: reverse_list(&head);
+            break;\
+            case 3: print(&head);
+            break;
+            case 4: exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+void insert_at_first(struct node **head,int data)
+{
+    struct node *newnode,*temp;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    {
+        newnode->data = data;
+        newnode->next = NULL;
+        if(*head == NULL)
+        {
+            *head = newnode;
+        }
+        else
+        {
+            newnode->next = *head;
+            *head = newnode;
+        }
+    }
+}
+
+void print(struct node **head)
+{
+    struct node *temp;
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        temp = *head;
+        printf("List contains:\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+void reverse_list(struct node **head)
+{
+    struct node *prev = NULL,*curr,*next;
+    if(*head == NULL)
+    printf("List is empty\n");
+    else 
+    {
+        curr = *head;
+        while(curr != NULL)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        *head = prev;
+    }
+}
