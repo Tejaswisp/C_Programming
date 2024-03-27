@@ -1,0 +1,41 @@
+/* strncmp - compare two strings, using recursion */
+
+#include<stdio.h>
+#define N 10 
+
+int strncmp_func(char *str1,char *str2,int i,int n);
+
+int main()
+{
+    char str1[N],str2[N];
+    int res,n;
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    printf("Enter string2: ");
+    fgets(str2,N,stdin);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    res = strncmp_func(str1,str2,0,n);
+    if(res == 0)
+    printf("Strings are equal\n");
+    else
+    printf("Strings are not equal\n");
+    return 0;
+}
+
+int strncmp_func(char *str1,char *str2,int i,int n)
+{
+    if(i < n)
+    {
+        if(str1[i] != str2[i])
+        {
+            return 1;
+        }
+        strncmp_func(str1,str2,++i,n);
+    }
+    else
+    return 0;
+}
+
+
+

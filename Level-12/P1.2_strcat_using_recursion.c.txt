@@ -1,0 +1,34 @@
+/* strcat - concatenate two strings, using recursion */
+
+#include<stdio.h>
+#include<string.h>
+#define N 10 
+
+void string_concat(char *src,char *des,int s_index,int d_index);
+
+int main()
+{
+    char src[N],des[N];
+    printf("Enter src string: ");
+    fgets(src,N,stdin);
+    printf("Enter dest string: ");
+    fgets(des,N,stdin);
+    string_concat(src,des,0,strlen(des)-1);
+    printf("%s\n",des);
+    return 0;
+}
+
+void string_concat(char *src,char *des,int s_index,int d_index)
+{
+    if(src[s_index] == '\0')
+    {
+        des[d_index] = '\0';
+        return;
+    }
+    
+    des[d_index] = src[s_index];
+    
+    string_concat(src,des,s_index+1,d_index+1);
+}
+
+

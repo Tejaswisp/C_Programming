@@ -1,0 +1,36 @@
+/* strchr - string scanning operation, using recursion */
+
+#include<stdio.h>
+#define N 10 
+
+char *strchr_func(char *str,char ch,int i);
+
+int main()
+{
+    char str[N],ch;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter charcater: ");
+    scanf("%c",&ch);
+    char *ptr = strchr_func(str,ch,0);
+    if(ptr == NULL)
+    printf("Character not found\n");
+    else 
+    printf("%s\n",ptr);
+    return 0;
+}
+
+char *strchr_func(char *str,char ch,int i)
+{
+    if(str[i] == '\0')
+    {
+        return NULL;
+    }
+    else
+    {
+        if(str[i] == ch)
+        return (str+i);
+        else
+        strchr_func(str,ch,++i);
+    }
+}
