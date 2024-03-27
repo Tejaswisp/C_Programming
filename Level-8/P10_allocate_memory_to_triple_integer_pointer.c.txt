@@ -1,0 +1,23 @@
+/* 10.	Program to allocate memory to triple integer pointer, 
+    store and access data using single, double & triple indirection */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int a=10;
+    int *ptr1,**ptr2,***ptr3;
+    ptr1 = &a;
+    ptr2 = &ptr1;
+    ptr3 = (int ***)malloc(sizeof(int **));
+    if(ptr3 == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    printf("Memory allocation successful\n");
+    ptr3 = &ptr2;
+    printf("***ptr3 = %d\n",***ptr3);
+    return 0;
+}
+
+

@@ -1,0 +1,30 @@
+/* 6.	Program to allocate a multiple blocks of float using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+float* alloc_mult_block_float(float **ptr,int n);
+
+int main()
+{
+    float *ptr;
+    int n;
+    printf("Enter the number of blocks to be allocated: ");
+    scanf("%d",&n);
+    ptr = alloc_mult_block_float(&ptr,n);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr)*n);
+    free(ptr);
+    return 0;
+}
+
+float* alloc_mult_block_float(float **ptr,int n)
+{
+    *ptr = (float *)malloc(sizeof(float) * n);
+    return *ptr;
+}
+
+

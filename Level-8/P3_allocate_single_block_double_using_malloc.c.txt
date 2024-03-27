@@ -1,0 +1,26 @@
+/* Program to allocate a single block of double using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+double* alloc_single_block_double(double **ptr);
+
+int main()
+{
+    double *ptr;
+    ptr = alloc_single_block_double(&ptr);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr));
+    return 0;
+}
+
+double* alloc_single_block_double(double **ptr)
+{
+    *ptr = (double *)malloc(sizeof(double));
+    return *ptr;
+}
+
+

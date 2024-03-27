@@ -1,0 +1,30 @@
+/* Program to allocate a multiple blocks of double using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+double* alloc_mult_block_double(double **ptr,int n);
+
+int main()
+{
+    double *ptr;
+    int n;
+    printf("Enter the number of blocks to be allocated: ");
+    scanf("%d",&n);
+    ptr = alloc_mult_block_double(&ptr,n);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr)*n);
+    free(ptr);
+    return 0;
+}
+
+double* alloc_mult_block_double(double **ptr,int n)
+{
+    *ptr = (double *)malloc(sizeof(double) * n);
+    return *ptr;
+}
+
+

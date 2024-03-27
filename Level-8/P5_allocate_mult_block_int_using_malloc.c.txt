@@ -1,0 +1,29 @@
+/* Program to allocate a multiple blocks of integer using malloc */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int* alloc_mult_block_int(int **ptr,int n);
+
+int main()
+{
+    int *ptr,n;
+    printf("Enter the number of blocks to be allocated: ");
+    scanf("%d",&n);
+    ptr = alloc_mult_block_int(&ptr,n);
+    if(ptr == NULL)
+    printf("Memory not allocated\n");
+    else
+    printf("Memory allocation succcessful\n");
+    printf("%zu\n",sizeof(*ptr)*n);
+    free(ptr);
+    return 0;
+}
+
+int* alloc_mult_block_int(int **ptr,int n)
+{
+    *ptr = (int *)malloc(sizeof(int) * n);
+    return *ptr;
+}
+
+
