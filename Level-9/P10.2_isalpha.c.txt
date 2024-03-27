@@ -1,0 +1,19 @@
+/* Program to learn use of string.h API,isalpha - test for an alphabetic character*/
+
+#include<stdio.h>
+#include<ctype.h>
+
+int main() 
+{
+    char ch;
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    int res = isalpha(ch);
+    if(res)
+    printf("%c is alphabet\n",ch);
+    else
+    printf("%c is not alphabet\n",ch);
+    return 0;
+}
+
+

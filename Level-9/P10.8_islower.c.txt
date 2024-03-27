@@ -1,0 +1,19 @@
+/* Program to learn use of string.h API,islower - test for a lowercase letter*/
+
+#include<stdio.h>
+#include<ctype.h>
+
+int main() 
+{
+    char ch;
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    int res = islower(ch);
+    if(res)
+    printf("%c is lower case letter\n",ch);
+    else
+    printf("%c is not lower case letter\n",ch);
+    return 0;
+}
+
+

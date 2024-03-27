@@ -1,0 +1,19 @@
+/* Program to learn use of string.h API,isupper - test for an uppercase letter*/
+
+#include<stdio.h>
+#include<ctype.h>
+
+int main() 
+{
+    char ch;
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    int res = isupper(ch);
+    if(res)
+    printf("%c is upper case letter\n",ch);
+    else
+    printf("%c is not upper case letter\n",ch);
+    return 0;
+}
+
+

@@ -1,0 +1,16 @@
+/* 1.	Program to learn use of string.h APIs, strcpy */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char src[N],des[N];
+    printf("Enter source string: ");
+    fgets(src,N,stdin);
+    strcpy(des,src);
+    printf("String after copying : %s\n",des);
+   return 0;   
+}
+

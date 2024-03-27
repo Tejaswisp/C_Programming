@@ -1,0 +1,19 @@
+/* Program to learn use of string.h APIs, memmove */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char src[N],des[N];
+    int n;
+    printf("Enter source string: ");
+    fgets(src,N,stdin);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    memmove(des,src,n);
+    printf("After memmove() : %s\n",des);
+    return 0;   
+}
+

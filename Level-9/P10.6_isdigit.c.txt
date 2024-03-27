@@ -1,0 +1,19 @@
+/* Program to learn use of string.h API,isdigit - test for a decimal digit*/
+
+#include<stdio.h>
+#include<ctype.h>
+
+int main() 
+{
+    char ch;
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    int res = isdigit(ch);
+    if(res)
+    printf("%c is digit\n",ch);
+    else
+    printf("%c is not digit\n",ch);
+    return 0;
+}
+
+

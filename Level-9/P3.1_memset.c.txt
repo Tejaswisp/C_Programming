@@ -1,0 +1,21 @@
+/* Program to learn use of string.h APIs, memset */
+
+#include<stdio.h>
+#include<string.h> 
+#define N 50 
+
+int main()
+{
+    char str[N],ch;
+    int n;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter the character: ");
+    scanf("%c",&ch);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    memset(str,ch,n);
+    printf("After memset() : %s\n",str);
+    return 0;   
+}
+
