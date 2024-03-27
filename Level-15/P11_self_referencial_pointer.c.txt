@@ -1,0 +1,26 @@
+/* Self referential pointers in structures */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct s 
+{
+    int data;
+    char ch;
+    struct s *ptr;
+};
+
+int main()
+{
+    struct s *p1 = (struct s *)malloc(sizeof(struct s));
+    struct s s1 = {29,'s'};
+    p1->data = 10;
+    p1->ch = 'a';
+    p1->ptr = &s1;
+    printf("data = %d\n",p1->data);
+    printf("ch = %c\n",p1->ch);
+    printf("data = %d\n",p1->ptr->data);
+    printf("ch = %c\n",p1->ptr->ch);
+    
+    return 0;
+}

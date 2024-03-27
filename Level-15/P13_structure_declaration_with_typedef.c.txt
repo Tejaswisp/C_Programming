@@ -1,0 +1,19 @@
+/* Structures declaration with typedef */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct s 
+{
+    int data;
+    char ch;
+}s1;
+
+int main()
+{
+    s1 p1 = {29,'s'};
+    printf("data = %d\n",p1.data);
+    printf("ch = %c\n",p1.ch);
+    
+    return 0;
+}

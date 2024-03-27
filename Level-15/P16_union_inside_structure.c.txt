@@ -1,0 +1,26 @@
+/* Unions inside a structure */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct s 
+{
+    int data;
+    char ch;
+    union p1 
+    {
+        int a;
+        char b;
+    }p2;
+};
+
+int main()
+{
+    struct s x = {29,'s'};
+    x.p2.a = 97;
+    printf("data = %d\n",x.data);
+    printf("ch = %c\n",x.ch);
+    printf("b = %c\n",x.p2.a);
+    
+    return 0;
+}

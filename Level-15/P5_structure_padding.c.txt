@@ -1,0 +1,16 @@
+/* Structure Padding */
+
+#include<stdio.h>
+
+struct s 
+{
+    int data;
+    char ch; //Extra 3 bytes will be padded (or added)
+};
+
+int main()
+{
+    printf("Sizeof structure = %zu\n",sizeof(struct s));
+    
+    return 0;
+}

@@ -1,0 +1,23 @@
+/* Structures inside a union */
+
+#include<stdio.h>
+
+union u 
+{
+    char ch;
+    int a;
+    struct s 
+    {
+        int b;
+    }s1;
+};
+
+int main()
+{
+    union u u1;
+    u1.a = 65;
+    printf("a = %d\n",u1.a);
+    printf("ch = %c\n",u1.ch);
+    printf("b = %d\n",u1.s1.b);
+    return 0;
+}

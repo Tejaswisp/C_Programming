@@ -1,0 +1,17 @@
+/* Structure packing */
+
+#include<stdio.h>
+#pragma pack(1)
+
+struct s 
+{
+    int data;
+    char ch;
+};
+
+int main()
+{
+    printf("Sizeof structure = %zu\n",sizeof(struct s));
+    
+    return 0;
+}

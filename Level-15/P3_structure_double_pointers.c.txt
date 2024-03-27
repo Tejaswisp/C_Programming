@@ -1,0 +1,21 @@
+/* Structure double pointer */
+
+#include<stdio.h>
+
+struct s 
+{
+    int data;
+    char name[20];
+};
+
+int main()
+{
+    struct s s1 = {10,"Bell"};
+    struct s *ptr = &s1;
+    struct s **ptr1 = &ptr;
+    printf("Structure :\n");
+    printf("Data = %d\n",(*ptr1)->data);
+    printf("Name = %s\n",(*ptr1)->name);
+    
+    return 0;
+}

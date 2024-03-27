@@ -1,0 +1,35 @@
+/* Returning structure as function return types */
+
+#include<stdio.h>
+
+typedef struct s
+{
+    int a;
+    float b;
+}s1;
+
+s1 fun(int x,float y);
+
+int main()
+{
+    int x;
+    float y;
+    s1 p1;
+    printf("Enter interger value: ");
+    scanf("%d",&x);
+    printf("Enter float value: ");
+    scanf("%f",&y);
+    p1 = fun(x,y);
+    printf("a = %d\n",p1.a);
+    printf("b = %f\n",p1.b);
+    
+    return 0;
+}
+
+s1 fun(int x,float y)
+{
+    s1 p2;
+    p2.a = x;
+    p2.b = y;
+    return p2;
+}

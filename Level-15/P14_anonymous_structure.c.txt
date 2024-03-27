@@ -1,0 +1,21 @@
+/* Anonymous structures */
+
+#include<stdio.h>
+
+struct s
+{
+    int a;
+    float b;
+    struct        //Anonymous structure
+    {
+        int z;
+    };
+};
+
+int main()
+{
+    struct s x;
+    x.z = 10;
+    printf("a = %d\n",x.z);
+    return 0;
+}
