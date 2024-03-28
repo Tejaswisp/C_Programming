@@ -1,0 +1,18 @@
+/* memfrob - frobnicate (encrypt) a memory area  */ 
+
+#define _GNU_SOURCE 
+#include <stdio.h>
+#include <string.h>
+#define N 50 
+
+int main()
+{
+    char str1[N],str2[N];
+    int n;
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    char *ptr = memfrob(str1,9);
+    printf("%s\n",ptr);
+    
+    return(0);
+}

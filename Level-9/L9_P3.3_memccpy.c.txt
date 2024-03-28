@@ -1,0 +1,24 @@
+/*	•	memccpy - copy bytes in memory     */ 
+
+#include <stdio.h>
+#include <string.h>
+#define N 50 
+
+int main()
+{
+    char str1[N],str2[N],ch;
+    int n;
+    printf("Enter string2: ");
+    fgets(str2,N,stdin);
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    memccpy(str1,str2,ch,n);
+    if(str1 == NULL)
+    printf("Not copied\n");
+    else
+    printf("%s\n",str1);
+    
+    return(0);
+}

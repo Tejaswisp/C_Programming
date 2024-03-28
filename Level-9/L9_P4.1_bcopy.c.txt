@@ -1,0 +1,17 @@
+/*	•	memfrob - frobnicate (encrypt) a memory area  */ 
+
+#include <stdio.h>
+#include <string.h>
+#define N 50 
+
+int main()
+{
+    char str1[N],str2[N];
+    int n;
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    bcopy(str1,str2,5);
+    printf("%s\n",str2);
+    
+    return(0);
+}

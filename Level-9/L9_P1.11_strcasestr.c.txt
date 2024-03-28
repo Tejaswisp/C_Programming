@@ -1,0 +1,22 @@
+/*	•	strcasestr - find a substring   */
+
+#define _GNU_SOURCE 
+#include <stdio.h>
+#include <string.h>
+#define  N 100 
+
+int main()
+{
+    char str[N],str1[N];
+    printf("Enter string1: ");
+    fgets(str,N,stdin);
+    printf("Enter string2: ");
+    fgets(str1,N,stdin);
+    char *ptr = strcasestr(str,str1);
+    if(ptr == NULL)
+    printf("Substring not found\n");
+    else
+    printf("%s\n",ptr);
+
+    return(0);
+}

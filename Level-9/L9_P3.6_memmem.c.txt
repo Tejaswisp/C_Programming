@@ -1,0 +1,20 @@
+/*	•	memmem - locate a substring   */ 
+
+#define _GNU_SOURCE 
+#include <stdio.h>
+#include <string.h>
+#define N 50 
+
+int main()
+{
+    char str1[N],str2[N];
+    int n;
+    printf("Enter string1: ");
+    fgets(str1,N,stdin);
+    printf("Enter string2: ");
+    fgets(str2,N,stdin);
+    char *ptr = memmem(str1,5,str2,2);
+    printf("%s\n",ptr);
+    
+    return(0);
+}

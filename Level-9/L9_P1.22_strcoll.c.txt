@@ -1,0 +1,23 @@
+/*	• strcoll - string comparison using collating information   */
+
+#include <stdio.h>
+#include <string.h>
+#define  N 100 
+
+int main()
+{
+    char str[N],str1[N];
+    printf("Enter string1: ");
+    fgets(str,N,stdin);
+    printf("Enter string2: ");
+    fgets(str1,N,stdin); 
+    int n = strcoll(str,str1);
+    if(n  > 0)
+    printf("%s is greater than %s\n",str,str1);
+    else if(n < 0)
+    printf("%s is less than %s\n",str1,str1);
+    else
+    printf("Strings are equal\n");
+    
+    return(0);
+}
