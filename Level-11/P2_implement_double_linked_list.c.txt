@@ -1,0 +1,238 @@
+/* 2.Program to implement Double linked list with functions insert_at_front, insert_at_rear, 
+insert_at_position,delete_at_front, delete_at_rear, delete_at_position */
+
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *prev;
+    struct node *next;
+};
+
+void insert_at_rear(struct node **head,struct node **tail);
+void insert_at_front(struct node **head,struct node **tail);
+void insert_at_position(struct node **head,struct node **tail,int pos);
+void delete_at_front(struct node **head,struct node **tail);
+void delete_at_rear(struct node **head,struct node **tail);
+void delete_at_position(struct node **head,struct node **tail,int pos);
+void print(struct node **head);
+
+int main()
+{
+    struct node *head = NULL;
+    struct node *tail = NULL;
+    int choice,pos;
+    while(1)
+    {
+        printf("Enter option:\n");
+        printf("1.Insert_at_rear\n2.insert_at_front\n3.insert_at_position\n4.delete_at_front\n5.delete_at_rear\n6.delete_at_position\n7.print\n8.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1 : insert_at_rear(&head,&tail);
+            break;
+            case 2 : insert_at_front(&head,&tail);
+            break;
+            case 3 : printf("Enter position: ");
+            scanf("%d",&pos);
+            insert_at_position(&head,&tail,pos);
+            break;
+            case 4 : delete_at_front(&head,&tail);
+            break;
+            case 5 : delete_at_rear(&head,&tail);
+            break;
+            case 6 : printf("Enter position: ");
+            scanf("%d",&pos);
+            delete_at_position(&head,&tail,pos);
+            break;
+            case 7 : print(&head);
+            break;
+            case 8 : exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+void insert_at_rear(struct node **head,struct node **tail)
+{
+    struct node *newnode;
+    int data;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    {
+        printf("Enter data: ");
+        scanf("%d",&newnode->data);
+        newnode->prev = NULL;
+        newnode->next = NULL;
+        if((*head == NULL) && (*tail == NULL))
+        {
+            *head = *tail = newnode;
+        }
+        else
+        {
+            (*tail)->next = newnode;
+            newnode->prev = *tail;
+            *tail = newnode;
+        }
+    }
+}
+
+void print(struct node **head)
+{
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        struct node *temp = *head;
+        printf("List contains:\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+void insert_at_front(struct node **head,struct node **tail)
+{
+    struct node *newnode;
+    int data;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    {
+        printf("Enter data: ");
+        scanf("%d",&newnode->data);
+        newnode->prev = NULL;
+        newnode->next = NULL;
+        if((*head == NULL) && (*tail == NULL))
+        {
+            *head = *tail = newnode;
+        }
+        else
+        {
+            newnode->next = *head;
+            (*head)->prev = newnode;
+            *head = newnode;
+        }
+    }
+}
+
+void insert_at_position(struct node **head,struct node **tail,int pos)
+{
+    if(pos == 1)
+    insert_at_front(head,tail);
+    else
+    {
+        struct node *newnode,*temp;
+        int data,i=1;
+        newnode = (struct node *)malloc(sizeof(struct node));
+        if(newnode == NULL)
+        printf("Unable to allocate memory\n");
+        else
+        {
+            printf("Enter data: ");
+            scanf("%d",&newnode->data);
+            newnode->prev = NULL;
+            newnode->next = NULL;
+            temp = *head;
+            while(i < (pos-1))
+            {
+                temp = temp->next;
+                i++;
+            }
+            newnode->next = temp->next;
+            newnode->next->prev = newnode;
+            newnode->prev = temp;
+            temp->next = newnode;
+        }
+    }
+}
+
+void delete_at_front(struct node **head,struct node **tail)
+{
+    struct node *temp;
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        temp = *head;
+        if(temp->next == NULL )
+        {
+            *tail = NULL;
+            *head = NULL;
+        }
+        else
+        {
+            *head = temp->next;
+            temp->next->prev = NULL;
+        }
+        free(temp);
+    }
+}
+
+void delete_at_rear(struct node **head,struct node **tail)
+{
+    struct node *temp;
+    if(*head == NULL)
+    printf("List is empty\n");
+    else 
+    {
+        temp = *head;
+        if(temp->next == NULL)
+        {
+            *head = NULL;
+            *tail = NULL;
+        }
+        else 
+        {
+            while(temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            *tail = temp->prev;
+            temp->prev->next = NULL;
+        }
+        free(temp);
+    }
+}
+
+void delete_at_position(struct node **head,struct node **tail,int pos)
+{
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        struct node *temp;
+        int i = 1;
+        if(pos == 1)
+        delete_at_front(head,tail);
+        else
+        {
+            temp = *head;
+            while(i < pos)
+            {
+                temp = temp->next;
+                i++;
+            }
+            if(temp->next == NULL)
+            {
+                *tail = temp->prev;
+                temp->prev->next = NULL;
+            }
+            else
+            {
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+            }
+            free(temp);
+        }
+    }
+}
