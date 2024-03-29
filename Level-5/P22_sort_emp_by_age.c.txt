@@ -1,0 +1,66 @@
+/*  Sort an array of employees based on their age */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 
+
+struct emp 
+{
+    char name[30];
+    int age;
+    float sal;
+};
+
+void sort(struct emp *ptr,int n);
+
+int main()
+{
+    int n,i;
+    struct emp *ptr;
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    ptr = (struct emp *)malloc(sizeof(struct emp)*n);
+    
+    printf("Enter emp information:\n");
+    for(i=0; i<n; i++)
+    {
+        printf("Enter name: ");
+        scanf("%s",ptr[i].name);
+        printf("Enter age: ");
+        scanf("%d",&(ptr+i)->age);
+        printf("Enter salary: ");
+        scanf("%f",&ptr[i].sal);
+    }
+    
+    sort(ptr,n);
+    
+    printf("After sorting: \n");
+    for(i=0; i<n; i++)
+    {
+        printf("Name : %s\n",ptr[i].name);
+        printf("Age : %d\n",ptr[i].age);
+        printf("Sal : %f\n",ptr[i].sal);
+    }
+    free(ptr);
+    return 0;
+}
+
+void sort(struct emp *ptr,int n)
+{
+    int i,j;
+    struct emp e;
+    for(i=0; i<n; i++)
+    {
+        for(j=i+1; j<n; j++)
+        {
+            if(ptr[i].age > ptr[j].age)
+            {
+                e = ptr[i];
+                ptr[i] = ptr[j];
+                ptr[j] = e;
+            }
+            
+        }
+    }
+}
