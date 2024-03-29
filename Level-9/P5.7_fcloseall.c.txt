@@ -1,0 +1,32 @@
+/* •	fcloseall - close all open streams */
+
+#define _GNU_SOURCE
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp,*fp1;
+    fp = fopen("file1.txt","w+");
+    if(fp == NULL)
+    {
+        printf("Error in opening file\n");
+        exit(1);
+    }
+    printf("File1 opened successfully\n");
+    
+    fp1 = fopen("file2.txt","w+");
+    if(fp1 == NULL)
+    {
+        printf("Error in opening file\n");
+        exit(1);
+    }
+    printf("File2 opened successfully\n");
+   int res = fcloseall();
+   if(res == 0)
+   printf("Closed all files\n");
+   else
+   printf("Error in closing files\n");
+    
+    return 0;   
+}

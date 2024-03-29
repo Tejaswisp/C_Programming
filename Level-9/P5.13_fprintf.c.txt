@@ -1,0 +1,22 @@
+/* •	fprintf - print formatted output  */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp;
+    fp = fopen("file1.txt","w");
+    if(fp == NULL)
+    {
+        printf("Error in opening file\n");
+        exit(1);
+    }
+    printf("File opened successfully\n");
+    for(int i=65; i<=90; i++)
+    {
+       fprintf(fp,"%c ",i);
+    }
+    fclose(fp);
+    return 0;   
+}

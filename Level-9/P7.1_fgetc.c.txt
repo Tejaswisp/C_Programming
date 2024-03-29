@@ -1,0 +1,21 @@
+/* •	fgetc - get a byte from a stream */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp,*fp1;
+    char ch;
+    fp = fopen("file1.txt","r");
+    if(fp == NULL)
+    {
+        printf("Error in opening file\n");
+        exit(1);
+    }
+    printf("File1 opened successfully\n");
+    ch = fgetc(fp);
+    fclose(fp);
+    printf("%c\n",ch);
+    return 0;   
+}

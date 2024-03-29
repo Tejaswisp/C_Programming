@@ -1,0 +1,19 @@
+/* •	fflush - flush a stream  */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+int main()
+{
+    char str[N];
+    int i;
+    for(i=0; i<2; i++)
+    {
+        scanf("%[^\n]s",str);
+        printf("%s\n",str);
+        fflush(stdin);
+    }
+
+    return 0;
+}
