@@ -1,0 +1,106 @@
+/* 21.	Program to implement circular queues*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *next;
+};
+
+void enqueue(struct node **front,struct node **rear);
+void dequeue(struct node **front,struct node **rear);
+void front_ele(struct node **front,struct node **rear);
+void print(struct node **front);
+
+int main()
+{
+    struct node *front = NULL;
+    struct node *rear = NULL;
+    int choice;
+    while(1)
+    {
+        printf("Enter option:\n1.enqueue\n2.dequeue\n3.front_ele\n4.print\n5.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1 : enqueue(&front,&rear);
+            break;
+            case 2 : dequeue(&front,&rear);
+            break;
+            case 3 : front_ele(&front,&rear);
+            break;
+            case 4 : print(&front);
+            break;
+            case 5 : exit(0);
+            break;
+        }
+    }
+return 0;
+}
+
+void enqueue(struct node **front,struct node **rear)
+{
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else 
+    {
+        int data;
+        printf("Enter data: ");
+        scanf("%d",&newnode->data);
+        newnode->next = NULL;
+        if(*front == NULL && *rear == NULL)
+        *front = *rear = newnode;
+        else
+        {
+            (*rear)->next = newnode;
+            *rear = newnode;
+        }
+        (*rear)->next = *front;
+    }
+}
+
+void dequeue(struct node **front,struct node **rear)
+{
+    struct node *temp = *front;
+    if(*front == NULL && *rear == NULL)
+    printf("Queue is empty\n");
+    {
+        if(*front == *rear)
+        *front = *rear = NULL;
+        else
+        {
+            *front = (*front)->next;
+            (*rear)->next = *front;
+        }
+        free(temp);
+    }
+}
+
+void front_ele(struct node **front,struct node **rear)
+{
+    if(*front == NULL)
+    printf("Queue is empty\n");
+    else
+    printf("Front element in the queue is : %d\n",(*front)->data);
+}
+
+void print(struct node **front)
+{
+    struct node *temp = *front;
+    if(*front == NULL)
+    printf("Queue is empty\n");
+    else
+    {
+        printf("Queue contains:\n");
+        while(temp->next != *front)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("%d\n",temp->data);
+    }
+}

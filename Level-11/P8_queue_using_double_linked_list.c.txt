@@ -1,0 +1,120 @@
+/*  Program to implement queue using Double linked lists */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *prev;
+    struct node *next;
+};
+
+void enqueue(struct node **front,struct node **rear);
+void dequeue(struct node **front,struct node **rear);
+void front_ele(struct node **front);
+void print(struct node **front,struct node **rear);
+
+int main()
+{
+    struct node *front = NULL;
+    struct node *rear = NULL;
+    int choice,data;
+    while(1)
+    {
+        printf("Enter choice:\n1.enqueue\n2.dequeueu\n3.front_ele\n4.print\n5.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: enqueue(&front,&rear);
+            break;
+            case 2: dequeue(&front,&rear);
+            break;
+            case 3: front_ele(&front);
+            break;
+            case 4: print(&front,&rear);
+            break;
+            case 5: struct node *ptr = front;
+            while(front != NULL)
+            {
+                ptr = front;
+                front = front->next;
+                free(ptr);
+            }
+            exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+void enqueue(struct node **front,struct node **rear)
+{
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else 
+    {
+        printf("Enter data : ");
+        scanf("%d",&newnode->data);
+        newnode->prev = NULL;
+        newnode->next = NULL;
+        if(*front == NULL && *rear == NULL)
+        {
+         *front = *rear = newnode;
+        }
+        else
+        {
+            (*rear)->next = newnode;
+            newnode->prev = *rear;
+            *rear = newnode;
+        }
+    }
+}
+
+void dequeue(struct node **front,struct node **rear)
+{
+    if(*front == NULL && *rear == NULL)
+    printf("Queue is empty\n");
+    else
+    {
+        struct node *temp = *front;
+        *front = (*front)->next;
+        if(*front != NULL)
+        (*front)->prev = NULL;
+        else
+        *rear = NULL;
+        free(temp);
+    }
+}
+
+void front_ele(struct node **front)
+{
+    if(*front == NULL)
+    printf("Queue is empty\n");
+    else
+    {
+        printf("The front element in the queue is : %d\n",(*front)->data);
+    }
+}
+
+
+
+void print(struct node **front,struct node **rear)
+{
+    struct node *temp = *front;
+    if(*front == NULL && *rear == NULL)
+    printf("Queue is empty\n");
+    else 
+    {
+        printf("Queue contains:\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+

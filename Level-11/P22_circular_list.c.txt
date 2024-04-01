@@ -1,0 +1,79 @@
+/*22.	Program to implement circular linked lists*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *next;
+};
+
+void print(struct node **head);
+void insert(struct node **head);
+
+int main()
+{
+    int choice;
+    struct node *head = NULL;
+    while(1)
+    {
+        printf("Enter option:\n1.insert\n2.print\n3.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1 : insert(&head);
+            break;
+            case 2 : print(&head);
+            break;
+            case 3 : exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+void insert(struct node **head)
+{
+    struct node *newnode,*temp;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable allocate memory\n");
+    else
+    {
+        printf("Enter data: ");
+        scanf("%d",&newnode->data);
+        if(*head == NULL)
+        {
+            *head = temp = newnode;
+        }
+        else 
+        {
+            temp = *head;
+            while(temp->next != *head)
+            {
+                temp = temp->next;
+            }
+            temp->next = newnode;
+        }
+        newnode->next = *head;
+    }
+}
+
+void print(struct node **head)
+{
+    struct node *temp = *head;
+    if(temp == NULL)
+    printf("list is empty\n");
+    else
+    {
+        printf("List contains:\n");
+        while(temp->next != *head)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("%d ",temp->data);
+        printf("\n");
+    }
+}

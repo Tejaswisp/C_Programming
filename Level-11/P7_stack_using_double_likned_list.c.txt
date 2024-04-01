@@ -1,0 +1,120 @@
+/*  Program to implement stacks using Double linked lists */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *prev;
+    struct node *next;
+};
+
+void push(int data);
+void pop();
+void top_ele();
+void print();
+
+struct node *top = NULL;
+
+int main()
+{
+    int choice,data;
+    while(1)
+    {
+        printf("Enter choice:\n1.push\n2.pop\n3.top\n4.print\n5.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf("Enter data : ");
+            scanf("%d",&data);
+            push(data);
+            break;
+            case 2: pop();
+            break;
+            case 3: top_ele();
+            break;
+            case 4: print();
+            break;
+            case 5: struct node *ptr = top;
+            while(top != NULL)
+            {
+                ptr = top;
+                top = top->next;
+                free(ptr);
+            }
+            exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+void push(int data)
+{
+    struct node *newnode;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else 
+    {
+        newnode->data = data;
+        newnode->prev = NULL;
+        if(top == NULL)
+        {
+         newnode->next = NULL;
+        }
+        else
+        {
+            newnode->next = top;
+            top->prev = newnode;
+        }
+        top = newnode;
+    }
+}
+
+void pop()
+{
+    struct node *temp = top;
+    if(top == NULL)
+    printf("Stack is empty\n");
+    else
+    {
+        top = top->next;
+        if(top != NULL)
+        {
+            top->prev = NULL;
+        }
+        free(temp);
+    }
+}
+
+void top_ele()
+{
+    if(top == NULL)
+    printf("stack is empty\n");
+    else
+    {
+        printf("The top element in the stack is : %d\n",top->data);
+    }
+}
+
+
+
+void print()
+{
+    struct node *temp = top;
+    if(top == NULL)
+    printf("Stack is empty\n");
+    else 
+    {
+        printf("Stack conatins:\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
