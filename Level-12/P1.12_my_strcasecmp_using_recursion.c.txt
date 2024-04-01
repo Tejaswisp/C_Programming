@@ -1,0 +1,41 @@
+/*•	strcasecmp - case-insensitive string comparisons ,implement using recursion*/
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+int my_strcasecmp(char *str1,char *str2,int i);
+
+int main()
+{
+    char str1[N],str2[N];
+    int n;
+    printf("Enter string1 : ");
+    fgets(str1,N,stdin);
+    printf("Enter string2 : ");
+    fgets(str2,N,stdin);
+    int res = my_strcasecmp(str1,str2,0);
+    if(res == 0)
+    printf("Strings are equal\n");
+    else
+    printf("Strings are not equal\n");
+    return 0;
+}
+
+int my_strcasecmp(char *str1,char *str2,int i)
+{
+    if(str1[i] != '\0' || str2[i] != '\0')
+    {
+        if(str1[i]>=65 && str1[i]<=90)
+        str1[i] = str1[i]+32;
+        if(str2[i] >= 65 && str2[i]<=90)
+        str2[i] = str2[i]+32;
+        
+        if(str1[i] != str2[i])
+        return 1;
+        else
+        my_strcasecmp(str1,str2,++i);
+    }
+    else
+    return 0;
+}
