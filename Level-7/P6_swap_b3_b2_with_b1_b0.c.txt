@@ -1,0 +1,28 @@
+/*6. Program to swap byte3, byte 2 with byte 1, byte 0 in a 32 bit integer */
+
+#include<stdio.h>
+
+int swap_bits(int num,int pos1,int pos2);
+
+int main()
+{
+   int num,p1=0,p2=2,p3=1,p4=3,s1,s2,res;
+   printf("Enter data: ");
+   scanf("%d",&num);
+   s1 = swap_bits(num,p1,p2);
+   s2 = swap_bits(s1,p3,p4);
+   printf("After swapping : %d\n",s2);
+   return 0;   
+}
+
+int swap_bits(int num,int pos1,int pos2)
+{
+    int bit1,bit2,mask1,mask2,res;
+    bit1 = (num >> pos1) & 1;
+    bit2 = (num >> pos2) & 1;
+    mask1 = (bit1 ^ bit2);
+    mask2 = (mask1 << pos1) | (mask1 << pos2);
+    res = (num ^ mask2);
+    return res;
+}
+
