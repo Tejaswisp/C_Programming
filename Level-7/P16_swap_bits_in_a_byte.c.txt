@@ -22,7 +22,7 @@ int swap_bits(int num,int pos1,int pos2)
     bit1 = (num >> pos1) & 1;
     bit2 = (num >> pos2) & 1;
     mask1 = (bit1 ^ bit2);
-    mask2 = (mask1 << pos1) | (mask2 << pos2);
+    mask2 = (mask1 << pos1) | (mask1 << pos2);
     res = (num ^ mask2);
     return res;
 }
