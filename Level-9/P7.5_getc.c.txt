@@ -1,0 +1,24 @@
+/* •	getc - get a byte from a stream */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    char ch;
+    printf("Enter character : ");
+    ch = getc(stdin);
+    printf("%c\n",ch);
+    
+    FILE *fp = NULL;
+    fp = fopen("file1.txt","r");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    ch = getc(fp);
+    printf("%c\n",ch);
+  
+    return 0;
+}

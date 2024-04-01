@@ -1,0 +1,13 @@
+/*•	getchar - get a byte from a stdin stream */
+
+#include<stdio.h>
+
+int main()
+{
+    char ch;
+    printf("Enter character : ");
+    ch = getchar();
+    printf("%c\n",ch);
+  
+    return 0;
+}

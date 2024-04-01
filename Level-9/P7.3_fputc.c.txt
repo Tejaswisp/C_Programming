@@ -1,0 +1,18 @@
+/*•	fputc - put a byte on a stream */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp = NULL;
+    fp = fopen("file1.txt","w");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    fputc('H',fp);
+    fclose(fp);
+    return 0;
+}

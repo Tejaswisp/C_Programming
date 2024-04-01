@@ -1,0 +1,19 @@
+/*•	putc - put a byte on a stream  */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp;
+    char ch = 'a';
+    fp = fopen("file1.txt","w");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    putc(ch,fp);
+    fclose(fp);
+    return 0;
+}

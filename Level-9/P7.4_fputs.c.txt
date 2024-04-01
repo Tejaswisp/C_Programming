@@ -1,0 +1,19 @@
+/*•	fputs - put a string on a stream  */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp = NULL;
+    char str[20] = "Hello";
+    fp = fopen("file1.txt","w");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    fputs(str,fp);
+    fclose(fp);
+    return 0;
+}
