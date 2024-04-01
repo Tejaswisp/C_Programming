@@ -1,0 +1,61 @@
+/* 19.	Program to check if a string is a proper IPv4 address or not*/
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define N 50 
+
+int validate_ipv4(char *str);
+
+int main()
+{
+    char str[N];
+    printf("Enter IPv4 address : ");
+    fgets(str,N,stdin);
+    int res = validate_ipv4(str);
+    if(res == 1)
+    printf("Valid IPv4 address\n");
+    else
+    printf("Invalid IPv4 address\n");
+    return 0;
+}
+
+int validate_ipv4(char *str)
+{
+    char buffer[4];
+    int i=0,count=0,j=0;
+    while(str[i] != '\0')
+    {
+        if(str[i] == '.')
+        count++;
+        i++;
+    }
+    
+    if(count < 3)
+    {
+        return 0;
+    }
+    i = 0;
+    while(str[i] != '\0')
+    {
+        if(str[i] != '.' && str[i] != '\n')
+        {
+            buffer[j] = str[i];
+            j++;
+        }
+        else 
+        {
+            buffer[j] = '\0';
+            int num = atoi(buffer);
+            if(num > 255)
+            {
+                return 0;
+            }
+            j = 0;
+        }
+        i++;
+    }
+    return 1;
+}
+
+    

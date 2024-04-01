@@ -1,0 +1,53 @@
+/* 10.	Program to replace occurance of word “paper” with “pen” in a string*/
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+void replace(char *str1,char *repl,char *find);
+
+int main()
+{
+    char str1[N],repl[N] = "pen",find[N] = "paper";
+    printf("Enter string : ");
+    fgets(str1,N,stdin);
+    replace(str1,repl,find);
+    printf("String after replacing : %s\n",str1);
+    return 0;
+}
+
+void replace(char *str1,char *repl,char *find)
+{
+    int i,j=0,flag=0,k=0,count=2,len1,len2;
+    len1 = strlen(str1);
+    for(i=0; i<len1; i++)
+    {
+        if(str1[i] == find[j])
+        {
+            while(find[j] != '\0' && find[j] != '\n')
+            {
+                if(str1[i+j] != find[j])
+                {
+                    flag = 1;
+                    break;
+                }
+                j++;
+            }
+            if(flag == 0)
+            {
+                while(k < count)
+                {
+                    for(j=i+1; j<len1; j++)
+                    str1[j] = str1[j+1];
+                    //pper
+                    k++;
+                    len1--;
+                }
+                for(j=0; j<(strlen(repl)); j++)
+                str1[i+j] = repl[j];
+            }
+            j=k=0;
+        }
+        flag = 0;
+    }
+}

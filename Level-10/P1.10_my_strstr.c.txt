@@ -1,0 +1,52 @@
+/*•	strstr - find a substring  */
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+char *my_strstr(char *src,char *find);
+
+int main()
+{
+    char src[N],find[N];
+    printf("Enter source string : ");
+    fgets(src,N,stdin);
+    printf("Enter string to be searched : ");
+    fgets(find,N,stdin);
+    char *ptr = my_strstr(src,find);
+    if(ptr == NULL)
+    printf("String not found\n");
+    else 
+    printf("%s\n",ptr);
+    
+    return 0;
+}
+
+char *my_strstr(char *src,char *find)
+{
+    int i,j=0,len,flag = 0;
+    char *ptr = NULL;
+    len = (strlen(src)-1);
+    for(i=0; i<len; i++)
+    {
+        if(src[i] == find[j])
+        {
+            while(find[j] != '\0' && find[j] != '\n')
+            {
+                if(src[i+j] != find[j])
+                {
+                    flag = 1;
+                    break;
+                }
+                j++;
+            }
+            if(flag == 0)
+            ptr = (src+i);
+        }
+    }
+    if(flag == 1)
+    return NULL;
+    else
+    return ptr;
+    
+}
