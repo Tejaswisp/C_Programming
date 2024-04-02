@@ -1,0 +1,62 @@
+/*15.Program to count how many mac address strings are present in a file */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+#define N 50 
+
+int find_dcount(char *ptr);
+int validate_mac_address(char *str);
+
+int main()
+{
+    FILE *fp;
+    char buffer[N];
+    int count = 0,res;
+    fp = fopen("abc.txt","r+");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    
+    while(fscanf(fp,"%s",buffer) == 1)
+    {
+           res = validate_mac_address(buffer);
+           if(res == 1)
+           count++;
+           
+    }
+    printf("Count = %d\n",count);
+    fclose(fp);
+    return 0;
+}
+
+
+int find_dcount(char *ptr)
+{
+    int count = 0;
+    while(*ptr)
+    {
+        if(isxdigit(*ptr))
+        count++;
+        ptr++;
+    }
+    return count;
+}
+
+int validate_mac_address(char *str)
+{
+    int d_count,s_count=0,i;
+    d_count = find_dcount(str);
+    
+    for(i=0; str[i] != '\0'; i++)
+    {
+        if(str[i] == ':' || str[i] == '-')
+        s_count++;
+    }
+    if((d_count == 12)&&(s_count == 5))
+    return 1;
+    else
+    return 0;
+}

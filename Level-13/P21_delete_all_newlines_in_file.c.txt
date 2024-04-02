@@ -1,0 +1,38 @@
+/*21.	Program to delete all new lines in a file */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 50 
+
+int main()
+{
+    FILE *fp,*fp1;
+    char ch;
+    
+    fp = fopen("abc.txt","r+");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    
+    fp1 = fopen("output.txt","w");
+    if(fp1 == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+
+    for(ch = fgetc(fp); ch != EOF; ch = fgetc(fp))
+    {
+        if(ch != '\n')
+        {
+            fputc(ch,fp1);
+        }
+    }
+    
+    fclose(fp1);
+    fclose(fp);
+    return 0;
+}

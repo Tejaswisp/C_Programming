@@ -1,0 +1,74 @@
+/* 24.	Program to split an input file into multiple files based on 
+    number of lines input by the user  */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 50 
+
+int main()
+{
+    FILE *fp,*op;
+    int line,n_count=0,n,total_files,i,c=0;
+    char buffer[N],ch;
+    fp = fopen("abc.txt","r");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    printf("Enter number of lines: ");
+    scanf("%d",&n);
+    for(ch=fgetc(fp); ch != EOF; ch=fgetc(fp))
+    {
+        if(ch == '\n')
+        n_count++;
+    }
+    if(n_count > 0)
+    n_count++;
+    rewind(fp);
+    total_files = n_count/n;
+    for(i=1; i<=total_files; i++)
+    {
+        snprintf(buffer,N,"output%d.txt",i);
+        op = fopen(buffer,"w");
+        if(op == NULL)
+        {
+            printf("Error\n");
+            exit(1);
+        }
+        
+            for(ch=fgetc(fp); ch != EOF; ch=fgetc(fp))
+            {
+                if(c < total_files*i)
+                {
+                    if(ch == '\n')
+                    {
+                        c++;
+                        fputc('\n',op);
+                        if(c == total_files*i)
+                        fseek(op,-1,SEEK_CUR);
+                    }
+                    else
+                        fputc(ch,op);
+                }
+                else
+                break;
+            }
+    }
+            if(c < n_count)
+            {
+                fputc('\n',op);
+                for(ch=fgetc(fp); ch != EOF; ch=fgetc(fp))
+                {
+                    if(ch == '\n')
+                    fputc('\n',op);
+                    else
+                    fputc(ch,op);
+                }
+            }
+    
+    fclose(op);
+    fclose(fp);
+    return 0;
+}

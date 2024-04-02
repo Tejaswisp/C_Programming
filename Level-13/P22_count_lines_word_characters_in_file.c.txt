@@ -1,0 +1,35 @@
+/*22.Program to number of lines, number of characters and number of words in a file */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp;
+    char ch;
+    int lines = 0, ch_count = 0, words = 0;
+    fp = fopen("abc.txt","r+");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    
+    for(ch = fgetc(fp); ch != EOF; ch = fgetc(fp))
+    {
+        if(ch != '\n')
+        ch_count++;
+        if(ch == ' ' || ch == '\n')
+        words++;
+        if(ch == '\n')
+        lines++;
+    }
+    if(ch_count > 0)
+    {
+        lines++;
+        words++;
+    }
+    printf("No of lines = %d\nNo of words = %d\nNo of characters = %d\n",lines,words,ch_count);
+    fclose(fp);
+    return 0;
+}

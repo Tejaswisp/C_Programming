@@ -1,0 +1,19 @@
+/* 20.Program to delete all the contents of a file */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *fp;
+    char buffer[50];
+    fp = fopen("abc.txt","w");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    printf("Deleted all the file contents\n");
+    fclose(fp);
+    return 0;
+}

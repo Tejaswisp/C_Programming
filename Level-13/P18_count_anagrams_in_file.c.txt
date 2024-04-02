@@ -1,0 +1,63 @@
+/*18.	Program to count number of anagrams in a file */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+int find_anagram(char *buffer,char *find);
+void find_frequency(int *arr,char *str);
+
+int main()
+{
+    FILE *fp;
+    char buffer[N],find[N] = "paper";
+    int count = 0,res;
+    fp = fopen("abc.txt","r+");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    
+    while(fscanf(fp,"%s",buffer) == 1)
+    {
+           res = find_anagram(buffer,find);
+           if(res == 1)
+           count++;
+           
+    }
+    printf("Count = %d\n",count);
+    fclose(fp);
+    return 0;
+}
+
+void find_frequency(int *arr,char *str)
+{
+    int i;
+    for(i=0; str[i] != '\0'; i++)
+    {
+        arr[str[i]-97] += 1;
+    }
+}
+
+int find_anagram(char *buffer,char *find)
+{
+    int f1[26] = {0};
+    int f2[26] = {0};
+    int i,flag=0;
+    find_frequency(f1,buffer);
+    find_frequency(f2,find);
+    for(i=0; i<26; i++)
+    {
+        if(f1[i] != f2[i])
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if(flag == 0)
+    return 1;
+    else
+    return 0;
+    
+}

@@ -1,0 +1,40 @@
+/*16. Program to delete occurances of “paper” in a file */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 50 
+
+int main()
+{
+    FILE *fp,*fp1;
+    char buffer[N],find[N]="paper",replace[N]="pen";
+    char ch;
+    int count = 0,i=0;
+    fp = fopen("abc.txt","r+");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    
+    fp1 = fopen("output.txt","w");
+    if(fp1 == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+
+    while(fscanf(fp,"%s",buffer) == 1)
+    {
+        if(strcmp(buffer,find) != 0)
+        {
+            fputs(buffer,fp1);
+            fputc(' ',fp1);
+        }
+    }
+    
+    fclose(fp1);
+    fclose(fp);
+    return 0;
+}
