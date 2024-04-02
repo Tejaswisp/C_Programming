@@ -1,0 +1,50 @@
+/*20.Program to check if a string is a proper MAC address or not */
+
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define N 50 
+
+int find_dcount(char *ptr);
+int validate_mac_address(char *str);
+
+int main()
+{
+    char str[N];
+    printf("Enter string1: ");
+    fgets(str,N,stdin);
+    int res = validate_mac_address(str);
+    if(res == 1)
+    printf("Valid mac address\n");
+    else
+    printf("Invalid mac address\n");
+    return 0;
+}
+
+int find_dcount(char *ptr)
+{
+    int count = 0;
+    while(*ptr)
+    {
+        if(isxdigit(*ptr))
+        count++;
+        ptr++;
+    }
+    return count;
+}
+
+int validate_mac_address(char *str)
+{
+    int d_count,s_count=0,i;
+    d_count = find_dcount(str);
+    
+    for(i=0; str[i] != '\0'; i++)
+    {
+        if(str[i] == ':' || str[i] == '-')
+        s_count++;
+    }
+    if((d_count == 12)&&(s_count == 5))
+    return 1;
+    else
+    return 0;
+}

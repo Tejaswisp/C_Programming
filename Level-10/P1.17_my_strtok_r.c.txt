@@ -1,0 +1,37 @@
+/*•	strtok_r - split string into tokens */
+
+#include<stdio.h>
+#define N 50 
+
+void my_strtok_r(char *str,char *delim);
+
+int main()
+{
+    char str[N],delim[2];
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter delimiter: ");
+    scanf("%s",delim);
+    my_strtok_r(str,delim);
+   
+    return 0;
+}
+
+void my_strtok_r(char *str,char *delim)
+{
+    int i,k=0;
+    char buffer[N];
+    for(i=0; str[i] != '\0'; i++)
+    {
+        if(str[i] != delim[0] && str[i] != '\n')
+        {
+            buffer[k++] = str[i];
+        }
+        else 
+        {
+            buffer[k] = '\0';
+            printf("%s\n",buffer);
+            k = 0;
+        }
+    }
+}

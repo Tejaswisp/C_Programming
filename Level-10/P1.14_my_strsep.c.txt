@@ -1,0 +1,38 @@
+/*•	strsep - extract token from string */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+void my_strsep(char **str,char *delim);
+
+int main()
+{
+    char str[N],delim[2];
+    char *ptr = str;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter delimiter: ");
+    scanf("%s",delim);
+    my_strsep(&ptr,delim);
+    return 0;
+}
+
+void my_strsep(char **str,char *delim)
+{
+    int i,k=0;
+    char *ptr = (char *)malloc(sizeof(N));
+    for(i=0; *(*str+i) != '\0'; i++)
+    {
+        if((*(*str+i)) != delim[0] && (*(*str+i)) != '\n')
+        {
+            ptr[k++] = *(*str+i);
+        }
+        else
+        {
+            ptr[k] = '\0';
+            k = 0;
+            printf("%s\n",ptr);
+        }
+    }
+}

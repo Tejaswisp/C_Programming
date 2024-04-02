@@ -1,0 +1,34 @@
+/*•	strndup - duplicate a specific number of bytes from a  */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+char *my_strndup(char *str,int n);
+
+int main()
+{
+    char str[N];
+    int n;
+    printf("Enter source string: ");
+    fgets(str,N,stdin);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    char *ptr = my_strndup(str,n);
+    printf("%s\n",ptr);
+    free(ptr);
+    return 0;
+}
+
+char *my_strndup(char *str,int n)
+{
+    int i;
+    char *ptr;
+    ptr = (char *)malloc(sizeof(str));
+    for(i=0; i<n; i++)
+    {
+        ptr[i] = str[i];
+    }
+    ptr[i] = '\0';
+    return ptr;
+}

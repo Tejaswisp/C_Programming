@@ -1,0 +1,34 @@
+/*•	strlcat - size-bounded string concatenation*/
+
+#include<stdio.h>
+#include<string.h>
+#define N 50 
+
+void my_strlcat(char *des,char *src,int n);
+
+int main()
+{
+    char src[N],des[N];
+    int n;
+    printf("Enter source string: ");
+    fgets(src,N,stdin);
+    printf("Enter destination string : ");
+    fgets(des,N,stdin);
+    printf("Enter n value : ");
+    scanf("%d",&n);
+    my_strlcat(des,src,n-1);
+    printf("After concatenating : %s\n",des);
+   
+    return 0;
+}
+
+void my_strlcat(char *des,char *src,int n)
+{
+    int i,len;
+    len = strlen(des)-1;
+    for(i=0; i<n; i++)
+    {
+        des[len+i] = src[i];
+    }
+    des[len+i] = '\0';
+}
