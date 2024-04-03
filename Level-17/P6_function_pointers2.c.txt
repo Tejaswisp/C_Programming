@@ -1,0 +1,40 @@
+/*  typdef int fptr(int, int); fptr *fun(fptr *)  */
+
+#include <stdio.h>
+
+typedef int (*fptr)(int,int);
+int sum(int a,int b);
+int sub(int a,int b);
+fptr *fun(fptr *);
+
+int main()
+{
+    int (*s2) (int,int) = sum;
+    int (**s) (int,int) = &s2;
+    fptr *fun(fptr *);
+    
+    int (**s3) (int,int) = fun(s);
+    int res = (**s3)(6,2);
+    printf("res = %d\n",res);
+
+    return 0;
+}
+
+int sum(int a,int b)
+{
+    return a + b;
+}
+
+fptr *fun(int (**fp) (int,int))
+{
+   int res = (**fp)(5,2);
+   printf("sum = %d\n",res);
+   int (*s2) (int,int) = sub;
+   int (**s) (int,int) = &s2;
+   return s;
+}
+
+int sub(int a,int b)
+{
+    return a - b;
+}
