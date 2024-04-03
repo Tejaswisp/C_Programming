@@ -1,0 +1,32 @@
+/* Read ahead structure declaration  */
+
+#include <stdio.h> 
+
+struct b;
+
+struct f 
+{
+    struct b *ptr;
+    int data;
+};
+
+struct b 
+{
+    struct f *ptr;
+    float data;
+};
+
+int main()
+{
+    struct f f1;
+    struct b b1;
+    f1.data = 10;
+    b1.data = 20.50;
+    f1.ptr = &b1;
+    b1.ptr = &f1;
+    printf("%d\n",f1.data);
+    printf("%f\n",b1.data);
+    printf("%f\n",f1.ptr->data);
+    printf("%d\n",b1.ptr->data);
+    return 0;
+}

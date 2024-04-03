@@ -1,0 +1,39 @@
+/* Function pointers inside structures  */
+
+#include <stdio.h> 
+
+typedef int (*fp)(int,int);
+
+struct s 
+{
+    fp add;
+    fp sub;
+};
+
+int add(int a,int b);
+int sub(int a,int b);
+
+int main()
+{
+    struct s s1;
+    s1.add = add;
+    s1.sub = sub;
+    
+    int res1 = s1.add(1,2);
+    int res2 = s1.sub(5,2);
+    printf("Sum = %d\n",res1);
+    printf("Subtraction = %d\n",res2);
+    
+    return 0;
+}
+
+
+int add(int a,int b)
+{
+    return a+b;
+}
+
+int sub(int a,int b)
+{
+    return a-b;
+}

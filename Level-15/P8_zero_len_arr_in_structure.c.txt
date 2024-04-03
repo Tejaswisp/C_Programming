@@ -1,0 +1,22 @@
+/*  Zero length arrays in structures  */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct line 
+{
+  int length;
+  char contents[0];
+};
+
+int main() 
+{ 
+    int len = 4;
+    struct line *s = (struct line *)malloc (sizeof (struct line) + len);
+    s->length = len;
+    
+    s->contents[0] = 'a';
+    printf("%c\n",s->contents[0]);
+	
+	return 0; 
+} 
