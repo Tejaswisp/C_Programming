@@ -1,0 +1,103 @@
+/* 4.Program to reverse a linked list using recursion */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+    int data;
+    struct node *next;
+};
+
+void print(struct node **head);
+void insert_at_rear(struct node **head,int data);
+void reverse_list(struct node **head,struct node *next,struct node *curr,struct node *prev);
+
+int main()
+{
+    struct node *head = NULL;
+    int choice,data;
+    while(1)
+    {
+        printf("Enter choice:\n");
+        printf("1.insert_at_rear\n2.print\n3.reverse_list\n4.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf("Enter data: ");
+            scanf("%d",&data);
+            insert_at_rear(&head,data);
+            break;
+            case 2: print(&head);
+            break;
+            case 3: reverse_list(&head,head,head,NULL);
+            break;
+            case 4: exit(0);
+            break;
+        }
+    }
+    return 0;
+}
+
+
+void reverse_list(struct node **head,struct node *next,struct node *curr,struct node *prev)
+{
+    if(curr != NULL)
+    {
+        next = next->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    else
+    {
+        *head = prev;
+        return;
+    }
+    reverse_list(head,next,curr,prev);
+}
+
+void print(struct node **head)
+{
+    struct node *temp = *head;
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        printf("List contains:\n");
+        while(temp != NULL)
+        {
+            printf("%d ",temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+void insert_at_rear(struct node **head,int data)
+{
+    struct node *newnode,*temp;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(newnode == NULL)
+    printf("Unable to access memory\n");
+    else 
+    {
+        newnode->data = data;
+        newnode->next = NULL;
+        if(*head == NULL)
+        {
+            *head = newnode;
+        }
+        else
+        {
+            temp = *head;
+            while(temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            temp->next = newnode;
+            
+        }
+    }
+}
+

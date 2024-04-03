@@ -1,0 +1,40 @@
+/*•	strchrnul - string scanning operation*/
+
+#include<stdio.h>
+#include<string.h>
+#define N 50  
+
+char *my_strchrnul(char *src,char ch,int i,int len);
+
+int main()
+{
+    char src[N],ch,*ptr;
+    int len;
+    printf("Enter string: ");
+    fgets(src,N,stdin);
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    len = strlen(src)+1;
+    ptr = my_strchrnul(src,ch,0,len);
+    if(ptr == NULL)
+    printf("Character not found\n");
+    else
+    printf("%s\n",ptr);
+   
+    return 0;
+}
+
+char *my_strchrnul(char *src,char ch,int i,int len)
+{
+    if(i < len)
+    {
+        if(src[i] == ch)
+        {
+            return src+i;
+        }
+    }
+    else
+    return NULL;
+    my_strchrnul(src,ch,++i,len);
+}
+   

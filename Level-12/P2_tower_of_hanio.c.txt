@@ -1,0 +1,26 @@
+/*2.Program to implement tower of hanoi using recursion*/
+
+#include <stdio.h>
+
+void tower_of_hanio(int n, char a, char c, char b);
+
+int main()
+{
+    int n;
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    tower_of_hanio(n, 'A', 'C', 'B');  
+    return 0;
+}
+
+void tower_of_hanio(int n, char a, char c, char b)
+{
+    if (n == 1)
+    {
+        printf("\n Move disk 1 from rod %c to rod %c", a, c);
+        return;
+    }
+    tower_of_hanio(n-1, a, b, c);
+    printf("\n Move disk %d from rod %c to rod %c", n, a, c);
+    tower_of_hanio(n-1, b, c, a);
+}
