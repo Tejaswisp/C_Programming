@@ -1,0 +1,35 @@
+/* Variadic Macros   */
+
+#include<stdio.h> 
+#include<stdarg.h>
+
+#define PRINT_VAR(...)\
+printf("Printing variables: ");\
+print_var(__VA_ARGS__); \
+printf("\n")
+
+
+void print_var(int n, ...);
+
+int main()
+{
+    PRINT_VAR(4,2,3,4,5);
+    PRINT_VAR(2,20,30);
+    PRINT_VAR(1,-1);
+  
+    return 0;
+}
+
+void print_var(int n, ...)
+{
+    int x,i;
+    va_list ptr;
+    va_start(ptr,n);
+    printf("%d ",n);
+    for(i=0; i<n; i++)
+    {
+        x = va_arg(ptr,int);
+        printf("%d ",x);
+    }
+    va_end(ptr);
+}
