@@ -1,0 +1,12 @@
+/* •	ctime - convert a time value to a date and time string */
+
+#include<stdio.h>
+#include<time.h>
+
+int main()
+{
+    time_t t;
+    time(&t);
+    printf("Current time : %s\n",ctime(&t));
+    return 0;
+}

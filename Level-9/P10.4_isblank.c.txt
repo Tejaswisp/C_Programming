@@ -1,0 +1,25 @@
+/*•	isblank - test for a blank character */
+
+#include<stdio.h>
+#include<ctype.h>
+#define N 50 
+
+int main()
+{
+    char str[N],buffer[N],*ptr;
+    int i = 0;
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    ptr = str;
+    while(*ptr)
+    {
+        if(isblank(*ptr))
+        printf("Balnk\n");
+        else
+        buffer[i++] = *ptr;
+        
+        ptr++;
+    }
+    printf("%s\n",buffer);
+    return 0;
+}

@@ -1,0 +1,17 @@
+/* •	asctime - convert date and time to a string  */
+
+#include<stdio.h>
+#include<time.h>
+
+int main()
+{
+    time_t t;
+    t = time(NULL);
+    
+    struct tm *ptr;
+    ptr = localtime(&t);
+    
+    printf("Local time : %s\n",asctime(ptr));
+
+    return 0;
+}

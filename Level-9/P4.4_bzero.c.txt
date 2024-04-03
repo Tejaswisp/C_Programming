@@ -1,0 +1,20 @@
+/*•	bcmp - compare byte sequences  */
+
+#include<stdio.h>
+#include<string.h>
+#define N 10 
+
+int main()
+{
+    int arr[N];
+    char ch_arr[N];
+    bzero(arr,sizeof(arr));
+    for(int i=0; i<N; i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    
+    bzero(ch_arr,sizeof(ch_arr));
+    
+    return 0;
+}

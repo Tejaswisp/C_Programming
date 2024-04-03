@@ -1,0 +1,20 @@
+/*•	offsetof - offset of a structure member */
+
+#include<stdio.h>
+#include<stddef.h>
+
+struct stu 
+{
+    char name[20];
+    int n;
+    char ch;
+};
+
+int main()
+{
+    printf("name offset = %ld\n",offsetof(struct stu,name));
+    printf("n offset = %ld\n",offsetof(struct stu,n));
+    printf("ch offset = %ld\n",offsetof(struct stu,ch));
+    
+    return 0;
+}

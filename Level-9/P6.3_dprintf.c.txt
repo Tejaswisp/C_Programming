@@ -1,0 +1,18 @@
+/*•	dprintf - print formatted output */
+
+#include<stdio.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd,x=100;
+    fd = open("file1.txt", O_RDWR | O_CREAT);
+    printf("fd = %d\n",fd);
+    if(fd == -1)
+    printf("Error\n");
+    dprintf(fd,"%d ",x);
+    close(fd);
+    return 0;
+}

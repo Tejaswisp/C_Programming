@@ -1,0 +1,17 @@
+/*snprintf - print formatted output  */
+
+#include<stdio.h>
+#define N 50 
+
+int main()
+{
+    int n;
+    char buffer[N],str[N];
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    printf("Enter n value: ");
+    scanf("%d",&n);
+    snprintf(buffer,n,"%s",str);
+    printf("%s\n",buffer);
+    return 0;
+}

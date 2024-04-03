@@ -1,0 +1,27 @@
+/*•	fdopen - associate a stream with a file descriptor */
+
+#include<stdio.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd,x=100;
+    FILE *fp;
+    fd = open("file1.txt", O_RDWR | O_CREAT);
+    printf("fd = %d\n",fd);
+    if(fd == -1)
+    printf("Error\n");
+    
+    fp = fdopen(fd,"r");
+    char ch;
+    for(ch=fgetc(fp);ch!=EOF;ch=fgetc(fp))
+    {
+        printf("%c ",ch);
+    }
+    
+    fclose(fp);
+    close(fd);
+    return 0;
+}

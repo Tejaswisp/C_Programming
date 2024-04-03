@@ -1,0 +1,16 @@
+/*  •	strxfrm - string transformation  */
+
+#define _GNU_SOURCE_
+#include<stdio.h>
+#include<string.h>
+#define N 100 
+
+int main() 
+{ 
+	char src[N],des[N];
+	printf("Enter src string: ");
+	fgets(src,N,stdin);
+	int res = strxfrm(des,src,10);
+	printf("%s\n",des);
+	return 0; 
+} 

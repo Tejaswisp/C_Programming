@@ -1,0 +1,15 @@
+/*•	atoi - convert a string to an integer */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+int main()
+{
+    char str[N];
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    int num = atoi(str);
+    printf("%d\n",num);
+    return 0;
+}

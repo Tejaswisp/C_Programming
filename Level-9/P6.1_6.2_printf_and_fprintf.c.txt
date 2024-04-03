@@ -1,0 +1,24 @@
+/*•	printf - print formatted output
+ •	fprintf - print formatted output */
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int main()
+{
+    int a = 5;
+    printf("a = %d\n",a);
+    
+    FILE *fp;
+    fp = fopen("abc.txt","w");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    fprintf(fp,"%d %s",a,"Hello");
+    fclose(fp);
+    
+    return 0;
+}

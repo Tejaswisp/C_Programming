@@ -1,0 +1,25 @@
+/*•	isprint - test for a printable character */
+
+#include<stdio.h>
+#include<ctype.h>
+#define N 50 
+
+int main()
+{
+    char ch;
+    printf("Enter character: ");
+    scanf("%c",&ch);
+    int r = isprint(ch);
+    if(r > 0)
+    printf("Printable\n");
+    else
+    printf("Not pritable\n");
+    
+    for(int i=0; i<127; i++)
+    {
+        if(isprint(i) != 0)
+        printf("%c ",i);
+    }
+    
+    return 0;
+}

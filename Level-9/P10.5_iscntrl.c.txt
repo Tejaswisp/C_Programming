@@ -1,0 +1,18 @@
+/*•	iscntrl - test for a control character    */
+
+#include<stdio.h>
+#include<ctype.h>
+#define N 50 
+
+int main()
+{
+    char str[N] = "Hi \t welcome";
+    int i=0;
+    while(!(iscntrl(str[i])))
+    {
+        printf("%c",str[i]);
+        i++;
+    }
+    
+    return 0;
+}

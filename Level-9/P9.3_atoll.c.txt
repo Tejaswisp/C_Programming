@@ -1,0 +1,15 @@
+/*•	•	atoll - convert a string to a long integer   */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+int main()
+{
+    char str[N];
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    long long int num = atoll(str);
+    printf("%lld\n",num);
+    return 0;
+}

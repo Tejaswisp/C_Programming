@@ -1,0 +1,26 @@
+/*•	vsnprintf - format output of a stdarg argument list */
+
+#include<stdio.h>
+#include<stdarg.h>
+
+char buffer[50];
+
+int print(int size,char *n, ...);
+
+int main()
+{
+    int n = 8;
+    print(n,"args %d %s",10,"HI");
+    printf("%s",buffer);
+    
+    return 0;
+}
+
+int print(int size,char *n, ...)
+{
+    va_list ptr;
+    va_start(ptr,n);
+    int res = vsnprintf(buffer,size,n,ptr);
+    va_end(ptr);
+    return res;
+}

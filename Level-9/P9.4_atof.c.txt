@@ -1,0 +1,15 @@
+/*•	atof - convert a string to a double-precision number 4  */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define N 50 
+
+int main()
+{
+    char str[N];
+    printf("Enter string: ");
+    fgets(str,N,stdin);
+    double num = atof(str);
+    printf("%lf\n",num);
+    return 0;
+}

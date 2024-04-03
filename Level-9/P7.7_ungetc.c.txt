@@ -1,0 +1,15 @@
+/*  •	ungetc - push byte back into input stream  */
+
+
+#include <stdio.h> 
+
+int main() 
+{ 
+	int a; 
+	while ((a = getchar()) != '1') 
+		putchar(a); 
+	ungetc(a, stdin); 
+	a = getchar(); 
+	putchar(a); 
+	return 0; 
+} 

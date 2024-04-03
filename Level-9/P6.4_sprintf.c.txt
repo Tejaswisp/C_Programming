@@ -1,0 +1,13 @@
+/*•	sprintf - print formatted output */
+
+#include<stdio.h>
+#define N 50 
+
+int main()
+{
+    int a = 100;
+    char buffer[N];
+    sprintf(buffer,"%d %s %f %c",a,"hi",6.7,'A');
+    printf("%s\n",buffer);
+    return 0;
+}

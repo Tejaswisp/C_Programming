@@ -1,0 +1,22 @@
+/* abs, labs, llabs, imaxabs*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<inttypes.h>
+#define N 50 
+
+int main()
+{
+    int num = -43;
+    printf("%d\n",abs(num));
+    
+    long int num1 = -98765677;
+    printf("%ld\n",labs(num1));
+  
+    long long int num2 = -675423128989898990;
+    printf("%lld\n",llabs(num2));
+    
+    printf("%ld\n",imaxabs(-123412121212121212));
+    
+    return 0;
+}

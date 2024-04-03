@@ -1,0 +1,24 @@
+/*•	isxdigit_l - test for a hexadecimal digit  */
+
+#include<stdio.h>
+#include<ctype.h>
+#include<locale.h>
+
+int main()
+{
+    locale_t loc = newlocale(LC_ALL_MASK,"en_US.UTF-8",(locale_t)0);
+    if(loc == (locale_t)0)
+    {
+        perror("newlocale");
+        return 1;
+    }
+    
+    char ch = 'H';
+    if(isxdigit_l(ch,loc))
+    printf("%c is a hexadecimal digit\n",ch);
+    else
+    printf("Not a hexadecimal digit\n");
+    freelocale(loc);
+    return 0;
+}
+
