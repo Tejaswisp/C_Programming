@@ -1,0 +1,170 @@
+/* 2.	SLL: Store the list of records in a singly linked list after sorting the records in 
+        alphabetic order by member names. Print all entries in the linked list.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 50 
+
+typedef struct node
+{
+    int id;
+    char f_name[50];
+    char l_name[50];
+    char gender[10];
+    char occupation[20];
+    int age;
+    struct node *next;
+}club_mem;
+
+void store_in_list(club_mem **head,club_mem m);
+void sort_list(club_mem **head);
+void print(club_mem **head);
+void release_memory(club_mem **head);
+
+int main()
+{
+    FILE *fp;
+    club_mem *head = NULL;
+    club_mem *temp = head,*temp1;
+    char buff1[N],buff2[N],buff3[N],buff4[N],buff5[N];
+    int i;
+    
+    fp = fopen("Club_Membership_2020.txt","r");
+    if(fp == NULL)
+    {
+        printf("Error\n");
+        exit(1);
+    }
+    
+   for(i=0; i<16; i++)
+   {
+       club_mem m;
+       if(i == 0)
+       {
+            fscanf(fp,"%s %s %s %s %s",buff1,buff2,buff3,buff4,buff5);
+       }
+       else
+       {
+           fscanf(fp,"%d %s %s %s %s %d",&m.id,m.f_name,m.l_name,m.gender,m.occupation,&m.age);
+           store_in_list(&head,m);
+       }
+   }
+   printf("Before sorting:\n");
+   printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+   print(&head);
+   printf("After sorting: \n");
+   printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+   sort_list(&head);
+   print(&head);
+   
+   release_memory(&head);
+   fclose(fp);
+   return 0;
+}
+
+void store_in_list(club_mem **head,club_mem m)
+{
+    club_mem *newnode,*temp;
+    newnode = (club_mem *)malloc(sizeof(club_mem));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else 
+    {
+        newnode->id = m.id;
+        strcpy(newnode->f_name,m.f_name);
+        strcpy(newnode->l_name,m.l_name);
+        strcpy(newnode->gender,m.gender);
+        strcpy(newnode->occupation,m.occupation);
+        newnode->age = m.age;
+        newnode->next = NULL;
+        if(*head == NULL)
+        {
+            *head = newnode;
+        }
+        else
+        {
+            temp = *head;
+            while(temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            temp->next = newnode;
+        }
+    }
+}
+
+void print(club_mem **head)
+{
+    if(*head == NULL)
+    printf("No data in the file\n");
+    else
+    {
+        club_mem *temp = *head;
+        while(temp != NULL)
+        {
+            printf("%d\t%s %s\t\t%s\t%s\t\t%d\n",temp->id,temp->f_name,temp->l_name,temp->gender,temp->occupation,temp->age);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
+}
+
+void sort_list(club_mem **head)
+{
+    club_mem *temp1,*temp2,var;
+    temp1 = *head;
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        while(temp1 != NULL)
+        {
+            if(temp1->next != NULL)
+            {
+                temp2 = temp1->next;
+                while(temp2 != NULL)
+                {
+                    if(strcmp(temp1->f_name,temp2->f_name) > 0)
+                    {
+                        var.id = temp1->id;
+                        strcpy(var.f_name,temp1->f_name);
+                        strcpy(var.l_name,temp1->l_name);
+                        strcpy(var.gender,temp1->gender);
+                        strcpy(var.occupation,temp1->occupation);
+                        var.age = temp1->age;
+                        
+                        temp1->id = temp2->id;
+                        strcpy(temp1->f_name,temp2->f_name);
+                        strcpy(temp1->l_name,temp2->l_name);
+                        strcpy(temp1->gender,temp2->gender);
+                        strcpy(temp1->occupation,temp2->occupation);
+                        temp1->age = temp2->age;
+                        
+                        temp2->id = var.id;
+                        strcpy(temp2->f_name,var.f_name);
+                        strcpy(temp2->l_name,var.l_name);
+                        strcpy(temp2->gender,var.gender);
+                        strcpy(temp2->occupation,var.occupation);
+                        temp2->age = var.age;
+                    }
+                    temp2 = temp2->next;
+                }
+            }
+            temp1 = temp1->next;
+        }
+    }
+}
+
+
+void release_memory(club_mem **head)
+{
+    club_mem *temp,*temp1;
+    temp = *head;
+    while(temp != NULL)
+   {
+       temp1 = temp;
+       temp = temp->next;
+       free(temp1);
+   }
+}
