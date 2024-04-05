@@ -1,0 +1,190 @@
+/*19.	DLL: Store the list of records in mutiple DLLs according to age buckets
+    (21-30, 31-40, 41-50, 51-60). The records in the age bucket must be storted acording 
+    to increasing age. Print all entries in each DLL in reverse age order for each bucket.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 50
+
+typedef struct node
+{
+    int id;
+    char f_name[30];
+    char l_name[30];
+    char gender[10];
+    char occupation[30];
+    int age;
+    struct node *prev;
+    struct node *next;
+}club_mem;
+
+void store_records_in_list(club_mem **head,club_mem **tail,club_mem m);
+void print(club_mem **tail);
+void release_memory(club_mem **head);
+void sort_age(club_mem **head,club_mem **tail);
+void swap(club_mem *temp1,club_mem *temp2);
+
+int main()
+{
+    FILE *fp;
+    int i;
+    char buff1[N], buff2[N], buff3[N], buff4[N], buff5[N];
+    club_mem *head1, *tail1, *head2, *tail2, *head3, *tail3, *head4, *tail4;
+    head1 = tail1 = head2 = tail2 = head3 = tail3 = head4 = tail4 = NULL;
+    club_mem m;
+    fp = fopen("Club_Membership_2020.txt","r");
+    if(fp == NULL)
+    {
+        printf("Error opening file\n");
+        exit(1);
+    }
+    
+    for(i=0; i<16; i++)
+    {
+        if(i==0)
+        fscanf(fp,"%s %s %s %s %s",buff1,buff2,buff3,buff4,buff5);
+        else
+        {
+            fscanf(fp,"%d %s %s %s %s %d",&m.id,m.f_name,m.l_name,m.gender,m.occupation,&m.age);
+            if(m.age >= 21 && m.age <= 30)
+            store_records_in_list(&head1,&tail1,m);
+            else if(m.age >= 31 && m.age <= 40)
+            store_records_in_list(&head2,&tail2,m);
+            else if(m.age >= 41 && m.age <= 50)
+            store_records_in_list(&head3,&tail3,m);
+            else 
+            store_records_in_list(&head4,&tail4,m);
+        }
+    }
+    sort_age(&head1,&tail1);
+    sort_age(&head2,&tail2);
+    sort_age(&head3,&tail3);
+    sort_age(&head4,&tail4);;
+    
+    printf("Age group : 21 to 30\n");
+    printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+    print(&tail1);;
+    printf("Age group : 31 to 40\n");
+    printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+    print(&tail2);
+     printf("Age group : 41 to 50\n");
+    printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+    print(&tail3);
+    printf("Age group : 51 to 60\n");
+    printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+    print(&tail4);
+    
+    release_memory(&head1);
+    release_memory(&head2);
+    release_memory(&head3);
+    release_memory(&head4);
+    fclose(fp);
+    return 0;
+}
+
+void store_records_in_list(club_mem **head,club_mem **tail,club_mem m)
+{
+    club_mem *newnode,*temp;
+    newnode = (club_mem *)malloc(sizeof(club_mem));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    {
+        newnode->id = m.id;
+        strcpy(newnode->f_name,m.f_name);
+        strcpy(newnode->l_name,m.l_name);
+        strcpy(newnode->gender,m.gender);
+        strcpy(newnode->occupation,m.occupation);
+        newnode->age = m.age;
+        newnode->next = NULL;
+        newnode->prev = NULL;
+        
+        if(*head == NULL && *tail == NULL)
+        {
+            *head = newnode;
+            *tail = newnode;
+        }
+        else
+        {
+            (*tail)->next = newnode;
+            newnode->prev = *tail;
+            *tail = newnode;
+        }
+    }
+}
+
+void print(club_mem **tail)
+{
+    if(*tail == NULL)
+    printf("List is empty\n");
+    else
+    {
+        club_mem *temp = *tail;
+        while(temp != NULL)
+        {
+            printf("%d\t%s %s\t\t%s\t%s\t\t%d\n",temp->id,temp->f_name,temp->l_name,temp->gender,temp->occupation,temp->age);
+            temp = temp->prev;
+        }
+        printf("\n");
+    }
+}
+
+void release_memory(club_mem **head)
+{
+    club_mem *temp, *temp1;
+    temp = *head;
+    while(temp != NULL)
+    {
+        temp1 = temp;
+        temp = temp->next;
+        free(temp1);
+    }
+}
+
+void sort_age(club_mem **head,club_mem **tail)
+{
+    club_mem *temp1,*temp2;
+    if(*head == NULL && *tail == NULL)
+    printf("List is empty\n");
+    else 
+    {
+        temp1 = *head;
+        while(temp1->next != NULL)
+        {
+            temp2 = temp1->next;
+            while(temp2 != NULL)
+            {
+                if(temp1->age > temp2->age)
+                swap(temp1,temp2);
+                temp2 = temp2->next;
+            }
+            temp1 = temp1->next;
+        }
+    }
+}
+
+void swap(club_mem *temp1,club_mem *temp2)
+{
+    club_mem m;
+    m.id = temp1->id;
+    strcpy(m.f_name,temp1->f_name);
+    strcpy(m.l_name,temp1->l_name);
+    strcpy(m.gender,temp1->gender);
+    strcpy(m.occupation,temp1->occupation);
+    m.age = temp1->age;
+    
+    temp1->id = temp2->id;
+    strcpy(temp1->f_name,temp2->f_name);
+    strcpy(temp1->l_name,temp2->l_name);
+    strcpy(temp1->gender,temp2->gender);
+    strcpy(temp1->occupation,temp2->occupation);
+    temp1->age = temp2->age;
+    
+    temp2->id = m.id;
+    strcpy(temp2->f_name,m.f_name);
+    strcpy(temp2->l_name,m.l_name);
+    strcpy(temp2->gender,m.gender);
+    strcpy(temp2->occupation,m.occupation);
+    temp2->age = m.age;
+}

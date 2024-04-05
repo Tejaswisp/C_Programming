@@ -1,0 +1,117 @@
+/* 13.	CSLL: Store the list of records in a circular singly linked list. 
+    Print only the members in the CSLL who are above the age of 40 and match the occupation “Doctor”.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define N 50
+
+typedef struct node
+{
+    int id;
+    char f_name[30];
+    char l_name[30];
+    char gender[10];
+    char occupation[30];
+    int age;
+    struct node *next;
+}club_mem;
+
+void store_records_in_list(club_mem **head,club_mem m);
+void print(club_mem **head);
+void release_memory(club_mem **head);
+
+int main()
+{
+    FILE *fp;
+    int i;
+    char buff1[N],buff2[N],buff3[N],buff4[N],buff5[N];
+    club_mem *head = NULL;
+    club_mem m;
+    fp = fopen("Club_Membership_2020.txt","r");
+    if(fp == NULL)
+    {
+        printf("Error opening file\n");
+        exit(1);
+    }
+    
+    for(i=0; i<16; i++)
+    {
+        if(i==0)
+        fscanf(fp,"%s %s %s %s %s",buff1,buff2,buff3,buff4,buff5);
+        else
+        {
+            fscanf(fp,"%d %s %s %s %s %d",&m.id,m.f_name,m.l_name,m.gender,m.occupation,&m.age);
+            store_records_in_list(&head,m);
+        }
+    }
+    printf("Above age 40 and occupation:Doctor : \n");
+    printf("%s\t%s\t\t\t%s\t%s\t%s\n",buff1,buff2,buff3,buff4,buff5);
+    print(&head);
+    
+    release_memory(&head);
+    fclose(fp);
+    return 0;
+}
+
+void store_records_in_list(club_mem **head,club_mem m)
+{
+    club_mem *newnode,*temp;
+    newnode = (club_mem *)malloc(sizeof(club_mem));
+    if(newnode == NULL)
+    printf("Unable to allocate memory\n");
+    else
+    {
+        newnode->id = m.id;
+        strcpy(newnode->f_name,m.f_name);
+        strcpy(newnode->l_name,m.l_name);
+        strcpy(newnode->gender,m.gender);
+        strcpy(newnode->occupation,m.occupation);
+        newnode->age = m.age;
+        
+        if(*head == NULL)
+        *head = newnode;
+        else
+        {
+            temp = *head;
+            while(temp->next != *head)
+            {
+                temp = temp->next;
+            }
+            temp->next = newnode;
+        }
+         newnode->next = *head;;
+    }
+}
+
+void print(club_mem **head)
+{
+    if(*head == NULL)
+    printf("List is empty\n");
+    else
+    {
+        club_mem *temp = *head;
+        while(temp->next != *head)
+        {
+            if((temp->age > 40) && (strcmp(temp->occupation,"Doctor")==0))
+            printf("%d\t%s %s\t\t%s\t%s\t\t%d\n",temp->id,temp->f_name,temp->l_name,temp->gender,temp->occupation,temp->age);
+            temp = temp->next;
+        }
+        if((temp->age > 40) && (strcmp(temp->occupation,"Doctor")==0))
+        printf("%d\t%s %s\t\t%s\t%s\t\t%d\n",temp->id,temp->f_name,temp->l_name,temp->gender,temp->occupation,temp->age);
+        printf("\n");
+    }
+}
+
+void release_memory(club_mem **head)
+{
+    club_mem *temp, *temp1;
+    temp = *head;
+    while(temp->next != *head)
+    {
+        temp1 = temp;
+        temp = temp->next;
+        free(temp1);
+    }
+    free(temp);
+}
